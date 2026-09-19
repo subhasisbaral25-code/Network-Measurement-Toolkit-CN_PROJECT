@@ -43,7 +43,7 @@ int sockfd = socket(AF_INET, SOCK_RAW, IPPROTO_ICMP);//we request raw socket fro
 //SOCK_RAW : we build our own headers , IPPROTO_ICMP: ping protocol
 
 if(sockfd <0){
-    perror("Socket cfreation failed!!!");
+    perror("Socket creation failed!!!");
     return -1;
 }
 printf("Raw socket successfully opened. File descriptor: %d\n",sockfd);
