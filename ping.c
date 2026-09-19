@@ -2,6 +2,11 @@
 #include <stdlib.h>
 #include <stdint.h>
 
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+
 struct icmp_header {
     uint8_t type;        // ICMP message type 1byte
     uint8_t code;        // ICMP message code 1byte
@@ -33,5 +38,16 @@ uint16_t calculate_checksum(uint16_t *ptr , int nbytes) {
 
 int main() {
     printf("Network core initialized.Memory structure defined.\n");
-return 0;
+
+int sockfd = socket(AF_INET, SOCK_RAW, IPPROTO_ICMP);//we request raw socket from linux kernel
+//SOCK_RAW : we build our own headers , IPPROTO_ICMP: ping protocol
+
+if(sockfd <0){
+    perror("Socket cfreation failed!!!");
+    return -1;
+}
+printf("Raw socket successfully opened. File descriptor: %d\n",sockfd);
+close(sockfd);
+
+    return 0;
 }
