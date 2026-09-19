@@ -47,6 +47,22 @@ if(sockfd <0){
     return -1;
 }
 printf("Raw socket successfully opened. File descriptor: %d\n",sockfd);
+
+struct icmp_header icmp_packet;
+
+icmp_packet.type = 8;              // 8 = ICMP Echo Request
+    icmp_packet.code = 0;              // 0 = Standard code for Echo Request
+    icmp_packet.identifier = getpid(); // Use the Linux Process ID as our unique tag
+    icmp_packet.sequence = 1;          // This is packet #1
+    icmp_packet.checksum = 0;          // Must be 0 before calculation
+
+    //generate RFC1071 checksum value
+icmp_packet.checksum = calculate_checksum((uint16_t *)&icmp_packet, sizeof(icmp_packet));
+//pass the memory addr of aour pavket(&icmp_packet) cast to 16 bit pointer
+
+    printf("ICMP Echo Request packet constructed! Checksum generated: 0x%04x\n", icmp_packet.checksum);
+
+
 close(sockfd);
 
     return 0;
