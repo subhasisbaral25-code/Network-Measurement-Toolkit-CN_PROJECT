@@ -79,6 +79,30 @@ if(bytes_sent <= 0){
     printf("Packet successfully fires , %zd bytes sent to 8.8.8.8\n",bytes_sent);
 }
 
+struct timeval timeout; // we create a strict 2sec socket timeout
+timeout.tv_sec = 2;
+timeout.tv_usec = 0;
+
+if (setsockopt(sockfd, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout)) < 0) {
+    perror("Failed to set socket receive timeout");
+    return -1;
+}
+
+char recv_buffer[1024];
+struct sockaddr_in router_ip;
+socklen_t router_ip_len = sizeof(router_ip);
+
+printf("Listening to router response for 2 seconds...\n");
+
+ssize_t bytes_received = recvfrom(sockfd, recv_buffer, sizeof(recv_buffer), 0, (struct sockaddr *)&router_ip, &router_ip_len);
+
+if(bytes_received <=0){
+    printf("Request timed out / failed to receive.\n");
+}else {
+    printf("Reply caught ! Received %zd bytes from the network.\n",bytes_received);
+}
+
+
 close(sockfd);
 
     return 0;
