@@ -57,11 +57,27 @@ icmp_packet.type = 8;              // 8 = ICMP Echo Request
     icmp_packet.checksum = 0;          // Must be 0 before calculation
 
     //generate RFC1071 checksum value
-icmp_packet.checksum = calculate_checksum((uint16_t *)&icmp_packet, sizeof(icmp_packet));
+    void *packet_ptr = &icmp_packet; 
+icmp_packet.checksum = calculate_checksum((uint16_t *)packet_ptr, sizeof(icmp_packet));
 //pass the memory addr of aour pavket(&icmp_packet) cast to 16 bit pointer
 
     printf("ICMP Echo Request packet constructed! Checksum generated: 0x%04x\n", icmp_packet.checksum);
 
+struct sockaddr_in target_ip;
+target_ip.sin_family = AF_INET;
+
+if(inet_pton(AF_INET, "8.8.8.8", &target_ip.sin_addr) <= 0) { //1=success(valid IP conversion),0=string format invalid,-1=sys level error
+    perror("Invalid IP address format!");
+    return -1;
+}
+
+ssize_t bytes_sent = sendto(sockfd, &icmp_packet, sizeof(icmp_packet), 0, (struct sockaddr *)&target_ip, sizeof(target_ip));
+
+if(bytes_sent <= 0){
+    perror("Packet launch failed");
+}else{
+    printf("Packet successfully fires , %zd bytes sent to 8.8.8.8\n",bytes_sent);
+}
 
 close(sockfd);
 
