@@ -38,7 +38,13 @@ uint16_t calculate_checksum(uint16_t *ptr , int nbytes) {
     return (uint16_t)~sum;
 }
 
-int main() {
+int main(int argc, char *argv[]) {
+
+if(argc !=2){
+    printf("Usage: sudo %s <Target IP Address>\n",argv[0]);
+return -1;
+}
+
     printf("Network core initialized.Memory structure defined.\n");
 
 int sockfd = socket(AF_INET, SOCK_RAW, IPPROTO_ICMP);//we request raw socket from linux kernel
@@ -68,7 +74,7 @@ icmp_packet.checksum = calculate_checksum((uint16_t *)packet_ptr, sizeof(icmp_pa
 struct sockaddr_in target_ip;
 target_ip.sin_family = AF_INET;
 
-if(inet_pton(AF_INET, "8.8.8.8", &target_ip.sin_addr) <= 0) { //1=success(valid IP conversion),0=string format invalid,-1=sys level error
+if(inet_pton(AF_INET, argv[1], &target_ip.sin_addr) <= 0) { //1=success(valid IP conversion),0=string format invalid,-1=sys level error
     perror("Invalid IP address format!");
     return -1;
 }
@@ -81,7 +87,7 @@ ssize_t bytes_sent = sendto(sockfd, &icmp_packet, sizeof(icmp_packet), 0, (struc
 if(bytes_sent <= 0){
     perror("Packet launch failed");
 }else{
-    printf("Packet successfully fires , %zd bytes sent to 8.8.8.8\n",bytes_sent);
+    printf("Packet successfully fires , %zd bytes sent to %s\n",bytes_sent, argv[1]);
 }
 
 struct timeval timeout; // we create a strict 2sec socket timeout
@@ -116,7 +122,7 @@ if(received_icmp -> identifier == getpid() ){//verufy process id matches our spe
 printf("Identity verified! , the router replied to exact same process.\n ");
 
 double time_ms = ((end_time.tv_sec - start_time.tv_sec) * 1000.0) + ((end_time.tv_usec - start_time.tv_usec)/ 1000.0 );
-printf("Reply from 8.8.8.8: bytes= %zd RTT= %.2f ms\n",bytes_received,time_ms);
+printf("Reply from %s: bytes= %zd RTT= %.2f ms\n",argv[1] ,bytes_received,time_ms);
 }else{
     printf("Warning : caught a icmp packet, but the pid does not match our same one.\n");
 }
