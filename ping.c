@@ -56,12 +56,38 @@ if(sockfd <0){
 }
 printf("Raw socket successfully opened. File descriptor: %d\n",sockfd);
 
+struct sockaddr_in target_ip;
+target_ip.sin_family = AF_INET;
+
+if(inet_pton(AF_INET, argv[1], &target_ip.sin_addr) <= 0) { //1=success(valid IP conversion),0=string format invalid,-1=sys level error
+    perror("Invalid IP address format!");
+    return -1;
+}
+
+struct timeval timeout; // we create a strict 2sec socket timeout
+timeout.tv_sec = 2;
+timeout.tv_usec = 0;
+
+if (setsockopt(sockfd, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout)) < 0) {
+    perror("Failed to set socket receive timeout");
+    return -1;
+}
+
+int packets_sent =0;
+int packets_received =0;
+double previous_rtt=0.0;
+double total_jitter = 0.0;
+
+
+for(int i =0 ; i < 4 ; i++){
+packets_sent ++;
+
 struct icmp_header icmp_packet;
 
 icmp_packet.type = 8;              // 8 = ICMP Echo Request
     icmp_packet.code = 0;              // 0 = Standard code for Echo Request
     icmp_packet.identifier = getpid(); // Use the Linux Process ID as our unique tag
-    icmp_packet.sequence = 1;          // This is packet #1
+    icmp_packet.sequence = i+1;          // update packet sequence from 1 to 4
     icmp_packet.checksum = 0;          // Must be 0 before calculation
 
     //generate RFC1071 checksum value
@@ -71,13 +97,8 @@ icmp_packet.checksum = calculate_checksum((uint16_t *)packet_ptr, sizeof(icmp_pa
 
     printf("ICMP Echo Request packet constructed! Checksum generated: 0x%04x\n", icmp_packet.checksum);
 
-struct sockaddr_in target_ip;
-target_ip.sin_family = AF_INET;
 
-if(inet_pton(AF_INET, argv[1], &target_ip.sin_addr) <= 0) { //1=success(valid IP conversion),0=string format invalid,-1=sys level error
-    perror("Invalid IP address format!");
-    return -1;
-}
+
 struct timeval start_time , end_time;//stopwatch declared
 
 gettimeofday(&start_time, NULL);// stopwatch started
@@ -90,14 +111,6 @@ if(bytes_sent <= 0){
     printf("Packet successfully fires , %zd bytes sent to %s\n",bytes_sent, argv[1]);
 }
 
-struct timeval timeout; // we create a strict 2sec socket timeout
-timeout.tv_sec = 2;
-timeout.tv_usec = 0;
-
-if (setsockopt(sockfd, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout)) < 0) {
-    perror("Failed to set socket receive timeout");
-    return -1;
-}
 
 char recv_buffer[1024];
 struct sockaddr_in router_ip;
@@ -119,19 +132,44 @@ struct icmp_header *received_icmp = (struct icmp_header *)(recv_buffer + ip_head
 
 if(received_icmp -> type == 0){// check if its echo reply
 if(received_icmp -> identifier == getpid() ){//verufy process id matches our specific program
-printf("Identity verified! , the router replied to exact same process.\n ");
+
+if(received_icmp->sequence == icmp_packet.sequence){
+   
+    packets_received++;
+    printf("Identity verified! , the router replied to exact same process.\n ");
 
 double time_ms = ((end_time.tv_sec - start_time.tv_sec) * 1000.0) + ((end_time.tv_usec - start_time.tv_usec)/ 1000.0 );
-printf("Reply from %s: bytes= %zd RTT= %.2f ms\n",argv[1] ,bytes_received,time_ms);
-}else{
-    printf("Warning : caught a icmp packet, but the pid does not match our same one.\n");
+
+// for calculating jitter
+if(previous_rtt >0.0){
+    double current_jitter = (time_ms > previous_rtt) ? (time_ms - previous_rtt) : (previous_rtt - time_ms);
+    total_jitter += current_jitter;
 }
+previous_rtt = time_ms;
+
+printf("Reply from %s: bytes= %zd icmp_seq=%d RTT= %.2f ms\n",argv[1] ,bytes_received, received_icmp->sequence, time_ms);
 }else{
+    printf("Warning : caught a delayed packet seq %d . Ignoring to  protect RTT math.\n",received_icmp->sequence);
+}
+}
+else{
+    printf("Warning : caught a icmp packet, but the pid does not match our same one.\n");
+}}
+else{
     printf("Warning : caught aicmp packet, but its not an echo reply(Type %d).\n", received_icmp ->type);
 }
 
 }
+sleep(1);
+}
 
+printf("\n ---- %s ping statistics ----\n", argv[1]);
+
+double loss_percent = ((packets_sent - packets_received) / (double)packets_sent) * 100.0;
+    double avg_jitter = (packets_received > 1) ? (total_jitter / (packets_received - 1)) : 0.0;
+    
+printf("%d packets transmitted, %d received, %.0f%% packet loss\n", packets_sent, packets_received, loss_percent);
+    printf("Average Jitter: %.2f ms\n", avg_jitter);
 
 close(sockfd);
 
