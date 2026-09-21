@@ -100,6 +100,21 @@ if(bytes_received <=0){
     printf("Request timed out / failed to receive.\n");
 }else {
     printf("Reply caught ! Received %zd bytes from the network.\n",bytes_received);
+
+// now unpacking the reply we received
+int ip_header_length = 20;
+struct icmp_header *received_icmp = (struct icmp_header *)(recv_buffer + ip_header_length);//we shifft by 20B to land exactly on 1st B of icmp payload
+
+if(received_icmp -> type == 0){// check if its echo reply
+if(received_icmp -> identifier == getpid() ){//verufy process id matches our specific program
+printf("Identity verified! , the router replied to exact same process.\n ");
+}else{
+    printf("Warning : caught a icmp packet, but the pid does not match our same one.\n");
+}
+}else{
+    printf("Warning : caught aicmp packet, but its not an echo reply(Type %d).\n", received_icmp ->type);
+}
+
 }
 
 
