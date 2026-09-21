@@ -7,6 +7,8 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 
+#include <sys/time.h>
+
 struct icmp_header {
     uint8_t type;        // ICMP message type 1byte
     uint8_t code;        // ICMP message code 1byte
@@ -70,6 +72,9 @@ if(inet_pton(AF_INET, "8.8.8.8", &target_ip.sin_addr) <= 0) { //1=success(valid 
     perror("Invalid IP address format!");
     return -1;
 }
+struct timeval start_time , end_time;//stopwatch declared
+
+gettimeofday(&start_time, NULL);// stopwatch started
 
 ssize_t bytes_sent = sendto(sockfd, &icmp_packet, sizeof(icmp_packet), 0, (struct sockaddr *)&target_ip, sizeof(target_ip));
 
@@ -99,6 +104,7 @@ ssize_t bytes_received = recvfrom(sockfd, recv_buffer, sizeof(recv_buffer), 0, (
 if(bytes_received <=0){
     printf("Request timed out / failed to receive.\n");
 }else {
+    gettimeofday(&end_time,NULL); //stop the stopwatch
     printf("Reply caught ! Received %zd bytes from the network.\n",bytes_received);
 
 // now unpacking the reply we received
@@ -108,6 +114,9 @@ struct icmp_header *received_icmp = (struct icmp_header *)(recv_buffer + ip_head
 if(received_icmp -> type == 0){// check if its echo reply
 if(received_icmp -> identifier == getpid() ){//verufy process id matches our specific program
 printf("Identity verified! , the router replied to exact same process.\n ");
+
+double time_ms = ((end_time.tv_sec - start_time.tv_sec) * 1000.0) + ((end_time.tv_usec - start_time.tv_usec)/ 1000.0 );
+printf("Reply from 8.8.8.8: bytes= %zd RTT= %.2f ms\n",bytes_received,time_ms);
 }else{
     printf("Warning : caught a icmp packet, but the pid does not match our same one.\n");
 }
