@@ -1,0 +1,219 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+
+#include <sys/time.h>
+
+struct icmp_header {
+    uint8_t type;        // ICMP message type 1byte
+    uint8_t code;        // ICMP message code 1byte
+    uint16_t checksum;   // Checksum 2bytes
+    uint16_t identifier; // Identifier to match requests and replies 2B
+    uint16_t sequence;   // Sequence number to track requests 2B
+} __attribute__((packed)); // Ensure no padding is added by the compiler
+
+//RFC 1071 checksum logic
+uint16_t calculate_checksum(uint16_t *ptr , int nbytes) {
+
+    uint32_t sum=0;
+ 
+    while(nbytes >1){
+        sum += *ptr;
+        ptr++; //here we jump exactly 2B 
+        nbytes -=2;
+    }
+    if (nbytes == 1) {
+        uint8_t last_byte = *(uint8_t *)ptr;// temorarily treat pointer as 8bit
+    sum += last_byte; //c compiler itself pads with 8 zeroes
+    }
+
+    sum = (sum >> 16) + (sum & 0xFFFF);
+    sum = sum + (sum >> 16);
+
+    return (uint16_t)~sum;
+}
+
+int main(int argc, char *argv[]) {
+
+if(argc !=2){
+    printf("Usage: sudo %s <Target IP Address>\n",argv[0]);
+return -1;
+}
+
+    printf("Network core initialized.Memory structure defined.\n");
+
+int sockfd = socket(AF_INET, SOCK_RAW, IPPROTO_ICMP);//we request raw socket from linux kernel
+//SOCK_RAW : we build our own headers , IPPROTO_ICMP: ping protocol
+
+if(sockfd <0){
+    perror("Socket creation failed!!!");
+    return -1;
+}
+printf("Raw socket successfully opened. File descriptor: %d\n",sockfd);
+
+struct sockaddr_in target_ip;
+target_ip.sin_family = AF_INET;
+
+if(inet_pton(AF_INET, argv[1], &target_ip.sin_addr) <= 0) { //1=success(valid IP conversion),0=string format invalid,-1=sys level error
+    perror("Invalid IP address format!");
+    return -1;
+}
+
+struct timeval timeout; // we create a strict 2sec socket timeout
+timeout.tv_sec = 2;
+timeout.tv_usec = 0;
+
+if (setsockopt(sockfd, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout)) < 0) {
+    perror("Failed to set socket receive timeout");
+    return -1;
+}
+
+int packets_sent =0;
+int packets_received =0;
+double previous_rtt=0.0;
+double total_jitter = 0.0;
+
+//TTL Loop: Increment TTL from 1 up to 15 hops
+int max_hops = 15;
+int destination_reached = 0;
+
+for(int ttl=1;ttl<=max_hops;ttl++){
+    packets_sent++;
+    //Set the IP_TTL socket option for the current hop
+    if(setsockopt(sockfd,IPPROTO_IP,IP_TTL,&ttl,sizeof(ttl))<0){
+        perror("Failed to set IP_TTL option");
+        break;
+     }
+    
+
+struct icmp_header icmp_packet;
+
+icmp_packet.type = 8;              // 8 = ICMP Echo Request
+    icmp_packet.code = 0;              // 0 = Standard code for Echo Request
+    icmp_packet.identifier = getpid(); // Use the Linux Process ID as our unique tag
+    icmp_packet.sequence = ttl;          // update packet sequence from 1 to 4
+    icmp_packet.checksum = 0;          // Must be 0 before calculation
+
+    //generate RFC1071 checksum value
+    void *packet_ptr = &icmp_packet; 
+icmp_packet.checksum = calculate_checksum((uint16_t *)packet_ptr, sizeof(icmp_packet));
+//pass the memory addr of aour pavket(&icmp_packet) cast to 16 bit pointer
+
+    printf("ICMP Echo Request packet constructed! Checksum generated: 0x%04x\n", icmp_packet.checksum);
+
+
+
+struct timeval start_time , end_time;//stopwatch declared
+
+gettimeofday(&start_time, NULL);// stopwatch started
+
+ssize_t bytes_sent = sendto(sockfd, &icmp_packet, sizeof(icmp_packet), 0, (struct sockaddr *)&target_ip, sizeof(target_ip));
+
+if(bytes_sent <= 0){
+    perror("Packet launch failed");
+    continue;   
+}else{
+    printf("Packet successfully fires , %zd bytes sent to %s\n",bytes_sent, argv[1]);
+}
+
+
+char recv_buffer[1024];
+struct sockaddr_in router_ip;
+socklen_t router_ip_len = sizeof(router_ip);
+
+printf("TTL = %d | Listening to router response for 2 seconds...\n",ttl);
+
+ssize_t bytes_received = recvfrom(sockfd, recv_buffer, sizeof(recv_buffer), 0, (struct sockaddr *)&router_ip, &router_ip_len);
+
+if(bytes_received <=0){
+    printf("TTL = %d | Request timed out / failed to receive.\n",ttl);
+}else {
+    gettimeofday(&end_time,NULL); //stop the stopwatch
+    printf("Reply caught ! Received %zd bytes from the network.\n",bytes_received);
+
+    double time_ms = ((end_time.tv_sec - start_time.tv_sec) * 1000.0) + ((end_time.tv_usec - start_time.tv_usec)/ 1000.0 );
+    // Look at the outer ICMP header to check the message type
+    struct icmp_header *received_icmp = (struct icmp_header *)(recv_buffer + 20);//we shifft by 20B to land exactly on 1st B of icmp payload
+
+    // Handle Type 11: Time Exceeded (Intermediate router hop)
+    if (received_icmp->type == 11) {
+    // Inside a Type 11 response, the original packet is nested past:
+    // Router IP header (20 bytes) + Router ICMP header (8 bytes) + Original IP header (20 bytes) = 48 bytes
+    struct icmp_header *inner_icmp = (struct icmp_header *)(recv_buffer + 48);
+    if (inner_icmp->identifier == getpid()) {
+    // ADDED CHECK: Verify sequence number of nested packet
+    if (inner_icmp->sequence == icmp_packet.sequence) {
+        packets_received++;
+
+    if (previous_rtt > 0.0) {
+        double current_jitter = (time_ms > previous_rtt) ? (time_ms - previous_rtt) : (previous_rtt - time_ms);
+        total_jitter += current_jitter;
+                }
+        previous_rtt = time_ms;
+
+        printf("Reply from %s: bytes=%zd icmp_seq=%d RTT=%.2f ms (TTL Expired)\n", 
+        inet_ntoa(router_ip.sin_addr), bytes_received, inner_icmp->sequence, time_ms);
+            } 
+    else {printf("Warning : caught a delayed Type 11 packet seq %d . Ignoring.\n", inner_icmp->sequence);
+        }
+    } else {
+            printf("Warning : caught a Type 11 packet, but the nested PID does not match our program.\n");
+        }  
+    }       
+// Handle Type 0: Echo Reply (Destination reached directly)
+else if(received_icmp -> type == 0){// check if its echo reply
+ if(received_icmp -> identifier == getpid() ){//verufy process id matches our specific program
+
+if(received_icmp->sequence == icmp_packet.sequence){
+   
+    packets_received++;
+    printf("Identity verified! , the router replied to exact same process.\n ");
+
+
+// for calculating jitter
+if(previous_rtt >0.0){
+    double current_jitter = (time_ms > previous_rtt) ? (time_ms - previous_rtt) : (previous_rtt - time_ms);
+    total_jitter += current_jitter;
+}
+previous_rtt = time_ms;
+
+printf(" Destination Reached !!! | Reply from %s: bytes= %zd icmp_seq=%d RTT= %.2f ms\n",argv[1] ,bytes_received, received_icmp->sequence, time_ms);
+destination_reached = 1;
+break;
+}else{
+    printf("Warning : caught a delayed packet seq %d . Ignoring to  protect RTT math.\n",received_icmp->sequence);
+}
+}
+else{
+    printf("Warning : caught a icmp packet, but the pid does not match our same one.\n");
+}}
+else{
+    printf("Warning : caught aicmp packet, but its not an echo reply(Type %d).\n", received_icmp ->type);
+}
+
+}
+usleep(500000);// 0.5-second pause between probe iterations
+}
+
+if (!destination_reached) {
+        printf("\nMax hops reached or target did not reply.\n");
+    }
+    
+
+printf("\n ---- %s ping statistics ----\n", argv[1]);
+
+double loss_percent = ((packets_sent - packets_received) / (double)packets_sent) * 100.0;
+    double avg_jitter = (packets_received > 1) ? (total_jitter / (packets_received - 1)) : 0.0;
+    
+printf("%d packets transmitted, %d received, %.0f%% packet loss\n", packets_sent, packets_received, loss_percent);
+    printf("Average Jitter: %.2f ms\n", avg_jitter);
+
+close(sockfd);
+
+    return 0;
+}
