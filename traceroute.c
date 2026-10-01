@@ -70,7 +70,7 @@ int packets_received=0;
 //acts as a flag
 int destination_reached=0;
 
-printf("\n===== Starting ICMP Traceroutr to %s =====\n",target_ip_str);
+printf("\n===== Starting ICMP Traceroute to %s =====\n",target_ip_str);
 
 // TTL(time to live ) which is increased by 1 for each hop
 for(int ttl=1;ttl<=max_hops;ttl++){
@@ -174,9 +174,140 @@ printf("\n--- Traceroute Statistics ---\n");
 
     close(sockfd);
 }
-//The below function will be filled in next commit.
+
+// Run Traceroute in UDP Mode
 void run_udp_traceroute(const char *target_ip_str, int max_hops) {
-    printf("UDP Traceroute mode selected (Implementation pending)\n");
+   int send_sockfd=socket(AF_INET,SOCK_DGRAM,IPPROTO_UDP);
+   int recv_sockfd=socket(AF_INET,SOCK_RAW,IPPROTO_ICMP);
+
+   if(send_sockfd<0 || recv_sockfd<0){
+       perror("Socket creation failed (Are you running with sudo ?)");
+       if(send_sockfd>=0) close(send_sockfd);
+       if(recv_sockfd>=0) close(recv_sockfd);
+       return;
+   }
+
+struct sockaddr_in target_ip;//It is designed to hold an IPv4 address and port no.
+memset(&target_ip,0,sizeof(target_ip));//memset completely fills the target_ip structure with zeros.Thus preventing from garbage value.
+target_ip.sin_family=AF_INET;
+
+if(inet_pton(AF_INET,target_ip_str,&target_ip.sin_addr)<=0){
+    printf("Error: Invalid target IP address '%s'\n",target_ip_str);
+    close(send_sockfd);
+    close(recv_sockfd);
+    return;
+}
+
+struct timeval timeout ={2,0};
+// Configure the socket to stop waiting after 2 seconds so it doesn't freeze if a router drops the packet
+if(setsockopt(recv_sockfd,SOL_SOCKET,SO_RCVTIMEO,&timeout,sizeof(timeout))<0){
+  perror("Failed to set receive timeout");
+  close(send_sockfd);
+  close(recv_sockfd);
+  return;
+}
+
+int packets_sent=0;
+int packets_received=0;
+//acts as a flag
+int destination_reached=0;
+
+printf("\n===== Starting UDP Traceroute to %s =====\n",target_ip_str);
+
+// TTL(time to live ) which is increased by 1 for each hop
+for(int ttl=1;ttl<=max_hops;ttl++){
+// Inject the current TTL limit directly into the IP packet header
+ if(setsockopt(send_sockfd,IPPROTO_IP,IP_TTL,&ttl,sizeof(ttl))<0){
+    perror("Failed to set IP_TTL option");
+    break;
+    }
+// Increment the destination port based on the current TTL
+// This helps uniquely identify responses and ensures we hit an unused port at the destination    
+uint16_t target_port=UDP_BASE_PORT+ttl;
+target_ip.sin_port=htons(target_port);
+
+// Small text payload sent with the UDP packet to trigger router responses
+//An empty payload looks suspicious to the network so I have put "CN_PROJECT_TRACE"
+char payload[]="CN_PROJECT_TRACE";
+
+struct timeval start_time,end_time;//stopwatch declared
+gettimeofday(&start_time,NULL);//stopwatch started
+
+// Send the UDP probe packet to the target IP address
+ssize_t bytes_sent=sendto(send_sockfd,payload,strlen(payload),0,(struct sockaddr *)&target_ip,sizeof(target_ip));
+
+if(bytes_sent<=0){
+    printf("TTL = %d | Sending of UDP Packet FAILED.\n",ttl);
+    continue;
+}
+packets_sent++;
+
+// A flag to track whether a router actually replies to this specific probe
+int hop_responded=0;
+
+while(1){
+    char recv_buffer[1024];
+    struct sockaddr_in router_ip;
+    socklen_t router_ip_len=sizeof(router_ip);
+    // Wait to catch an incoming network packet
+    ssize_t bytes_received = recvfrom(recv_sockfd, recv_buffer, sizeof(recv_buffer), 0, (struct sockaddr *)&router_ip, &router_ip_len);
+    gettimeofday(&end_time, NULL);// stopwatch stopped
+    if (bytes_received<=0) break;
+    if (bytes_received < 20) continue;
+    if ((recv_buffer[0] >> 4) != 4) continue;
+    int outer_ip_len = (recv_buffer[0] & 0x0F) * 4;
+    if (outer_ip_len < 20 || bytes_received < outer_ip_len + 8) continue;
+    
+    // Extract the ICMP data from the raw packet
+    struct icmp_header *outer_icmp = (struct icmp_header *)(recv_buffer + outer_ip_len);
+   
+    double time_ms = ((end_time.tv_sec - start_time.tv_sec) * 1000.0) + ((end_time.tv_usec - start_time.tv_usec) / 1000.0);
+    //11 = ICMP_TIME_EXCEEDED , 3 = ICMP_DEST_UNREACH , 3 = ICMP_PORT_UNREACH 
+    if((outer_icmp->type == 11 && outer_icmp->code == 0) || (outer_icmp->type == 3 && outer_icmp->code == 3)){
+
+        int inner_ip_offset = outer_ip_len + 8;
+        if(bytes_received<inner_ip_offset + 20)continue;
+        if ((recv_buffer[inner_ip_offset] >> 4) != 4) continue;
+        int inner_ip_len = (recv_buffer[inner_ip_offset] & 0x0F) * 4;
+        if (inner_ip_len < 20) continue;
+       
+        uint8_t inner_protocol = (uint8_t)recv_buffer[inner_ip_offset + 9];
+        if (inner_protocol != IPPROTO_UDP) continue;
+
+        if (bytes_received < inner_ip_offset + inner_ip_len + 4) continue; 
+        
+        // Extract the destination port from the returned UDP header
+        uint16_t inner_dest_port;
+        memcpy(&inner_dest_port, recv_buffer + inner_ip_offset + inner_ip_len + 2, sizeof(inner_dest_port));
+        inner_dest_port = ntohs(inner_dest_port);
+
+        if(inner_dest_port == target_port){
+            packets_received++;
+            if(outer_icmp->type == 11){//11 = ICMP_TIME_EXCEEDED
+               printf("%2d %s %.2f ms | TTL Expired\n",ttl,inet_ntoa(router_ip.sin_addr),time_ms); 
+            }
+            else{
+                printf("%2d %s %.2f ms | Destination Reached (Port Unreachable)\n",ttl,inet_ntoa(router_ip.sin_addr),time_ms); 
+                destination_reached=1;// It is set to 1 so the entire program knows to stop looping
+            
+            }
+            hop_responded=1;
+            break;
+        }
+    }
+     
+}
+if (!hop_responded) printf("TTL = %2d | Request timed out\n", ttl);
+if (destination_reached) break;
+usleep(200000);// 200ms delay between hops
+}
+printf("\n--- Traceroute Statistics ---\n");
+    printf("%d packets sent, %d packets received, %.1f%% packet loss\n", 
+    packets_sent, packets_received, 
+    packets_sent > 0 ? ((float)(packets_sent - packets_received) / packets_sent) * 100.0 : 0.0);
+
+close(send_sockfd);
+close(recv_sockfd);
 }
 
 int main(int argc, char *argv[]) {
