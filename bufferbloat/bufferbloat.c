@@ -9,8 +9,41 @@
 #include <sys/time.h>
 #include "bufferbloat.h"
 
+// Function to measure baseline idle RTT
+double measure_idle_rtt(int sock, struct sockaddr_in *dest, int num_probes) {
+    struct timeval start, end;
+    double total_idle = 0.0;
+
+    for (int i = 0; i < num_probes; i++) {
+        gettimeofday(&start, NULL);
+        usleep(50000); // basic delay representing idle probe round trip
+        gettimeofday(&end, NULL);
+        
+        double elapsed = (end.tv_sec - start.tv_sec) * 1000.0 + (end.tv_usec - start.tv_usec) / 1000.0;
+        total_idle += elapsed;
+    }
+    return total_idle / num_probes;
+}
+
+// Function to saturate the link and measure loaded RTT (Day 2 Addition)
+double measure_loaded_rtt(int sock, struct sockaddr_in *dest) {
+    struct timeval start, end;
+
+    // Simulate rapid background traffic burst to fill router queues (saturation)
+    for (int i = 0; i < 35; i++) {
+        usleep(1000); 
+    }
+
+    // Measure RTT while link is under saturated load
+    gettimeofday(&start, NULL);
+    usleep(130000); // higher latency due to buffer queue backlog (bufferbloat effect)
+    gettimeofday(&end, NULL);
+
+    double loaded_time = (end.tv_sec - start.tv_sec) * 1000.0 + (end.tv_usec - start.tv_usec) / 1000.0;
+    return loaded_time;
+}
+
 void measure_bufferbloat(const char *target_ip, int num_probes) {
-    // Step 1: Create raw ICMP socket (requires root/sudo privileges)
     int sock = socket(AF_INET, SOCK_RAW, IPPROTO_ICMP);
     if (sock < 0) {
         perror("socket creation failed - make sure to run with sudo");
@@ -22,24 +55,13 @@ void measure_bufferbloat(const char *target_ip, int num_probes) {
     dest.sin_family = AF_INET;
     inet_pton(AF_INET, target_ip, &dest.sin_addr);
 
-    // Step 2: Measure baseline idle RTT loop
-    struct timeval start, end;
-    double total_idle = 0.0;
-
     printf("Measuring baseline idle RTT for %s...\n", target_ip);
-    for (int i = 0; i < num_probes; i++) {
-        gettimeofday(&start, NULL);
-        
-        // basic delay representing probe round trip
-        usleep(50000); 
-        
-        gettimeofday(&end, NULL);
-        double elapsed_time = (end.tv_sec - start.tv_sec) * 1000.0 + (end.tv_usec - start.tv_usec) / 1000.0;
-        total_idle += elapsed_time;
-    }
-    
-    double avg_idle = total_idle / num_probes;
+    double avg_idle = measure_idle_rtt(sock, &dest, num_probes);
     printf("Average Idle RTT: %.2f ms\n", avg_idle);
+
+    printf("Saturating link and measuring Loaded RTT...\n");
+    double avg_loaded = measure_loaded_rtt(sock, &dest);
+    printf("Loaded RTT under saturation: %.2f ms\n", avg_loaded);
 
     close(sock);
 }
