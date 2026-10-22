@@ -25,7 +25,7 @@ double measure_idle_rtt(int sock, struct sockaddr_in *dest, int num_probes) {
     return total_idle / num_probes;
 }
 
-// Function to saturate the link and measure loaded RTT (Day 2 Addition)
+// Function to saturate the link and measure loaded RTT
 double measure_loaded_rtt(int sock, struct sockaddr_in *dest) {
     struct timeval start, end;
 
@@ -62,6 +62,21 @@ void measure_bufferbloat(const char *target_ip, int num_probes) {
     printf("Saturating link and measuring Loaded RTT...\n");
     double avg_loaded = measure_loaded_rtt(sock, &dest);
     printf("Loaded RTT under saturation: %.2f ms\n", avg_loaded);
+
+    // Day 3 Addition: Bufferbloat Delta Calculation (Queuing Delay Penalty)
+    double delta = avg_loaded - avg_idle;
+    if (delta < 0) delta = 0;
+    printf("Bufferbloat Delta (Queuing Delay): %.2f ms\n", delta);
+
+    // Day 3 Addition: Save results to CSV log file for plotting
+    FILE *f = fopen("data/bufferbloat_results.csv", "a");
+    if (f != NULL) {
+        fprintf(f, "%s,%.2f,%.2f,%.2f\n", target_ip, avg_idle, avg_loaded, delta);
+        fclose(f);
+        printf("[*] Results successfully logged to data/bufferbloat_results.csv\n");
+    } else {
+        perror("Error opening CSV file for logging");
+    }
 
     close(sock);
 }
