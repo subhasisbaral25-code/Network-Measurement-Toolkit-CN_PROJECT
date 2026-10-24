@@ -80,3 +80,19 @@ void measure_bufferbloat(const char *target_ip, int num_probes) {
 
     close(sock);
 }
+// ... your existing include statements and helper functions ...
+
+int main(int argc, char *argv[]) {
+    if (argc < 3) {
+        fprintf(stderr, "Usage: %s <target_ip> <count>\n", argv[0]);
+        return 1;
+    }
+    
+    const char *target_ip = argv[1];
+    int count = atoi(argv[2]);
+    
+    // Call your bufferbloat measurement module function
+    measure_bufferbloat(target_ip, count);
+    
+    return 0;
+}

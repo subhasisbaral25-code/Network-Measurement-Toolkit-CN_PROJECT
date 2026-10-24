@@ -20,15 +20,28 @@ def run_command(cmd):
 
 def main():
     os.makedirs("data", exist_ok=True)
+    
+    # Clear old results if any exist
+    if os.path.exists("data/bufferbloat_results.csv"):
+        os.remove("data/bufferbloat_results.csv")
+
     print("==================================================")
-    print(" Starting Day 4: Global Experiment Orchestrator   ")
+    print(" Starting Global Experiment Orchestrator          ")
     print("==================================================")
     
     for ip in TARGETS:
         print(f"\n[+] Target IP: {ip}")
+        
+        # 1. Run native OS ping control benchmark
         print("Running native OS ping control benchmark...")
         ping_output = run_command(f"ping -c 5 {ip}")
         print(ping_output)
+        
+        # 2. Invoke your compiled C bufferbloat module (requires root for raw sockets)
+        print("Running custom C bufferbloat measurement module...")
+        c_output = run_command(f"sudo ./bufferbloat/bufferbloat {ip} 5")
+        print(c_output)
+        
         time.sleep(1)
 
     print("\n[+] Experiment orchestration complete. Results logged to data/ directory.")
