@@ -29,14 +29,36 @@ Because this toolkit utilizes raw sockets, all modules strictly require administ
 
 **Description:** Implements IPv4 Path MTU Discovery using raw sockets, ICMP probes, the Don't Fragment (DF) flag, and binary search to estimate the largest packet size that can traverse a network path without fragmentation. It also estimates network bandwidth using packet-pair dispersion by measuring the time difference between corresponding ICMP replies.
 
+#### **A) Path MTU Discovery (PMTU)**
+
 **Compilation:**
+
+```bash
 gcc -Wall -Wextra -Wpedantic pmtu/pmtu.c -o pmtu_tool
-gcc -Wall -Wextra -Wpedantic bandwidth/bandwidth.c -o bandwidth_tool
+```
 
 **Execution:**
+
+```bash
 sudo ./pmtu_tool 1.1.1.1
+```
+
+**Documentation:** For more details, refer to the [PMTU README](pmtu/README.md).
+
+#### **B) Bandwidth Estimation**
+
+**Compilation:**
+
+```bash
+gcc -Wall -Wextra -Wpedantic bandwidth/bandwidth.c -o bandwidth_tool
+```
+
+**Execution:**
+
+```bash
 sudo ./bandwidth_tool <Target_IP>
+```
 
-**Documentation:** For more details, refer to the PMTU README and Bandwidth Estimation README.
+**Documentation:** For more details, refer to the [Bandwidth Estimation README](bandwidth/README.md).
 
--------------------------
+**-------------------------**
