@@ -1,0 +1,3277 @@
+
+================ DESTINATION: 8.8.8.8 ================
+
+--- sudo ./ping_bin 8.8.8.8 ---
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf247
+Packet successfully fires , 8 bytes sent to 8.8.8.8
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 8.8.8.8: bytes= 28 icmp_seq=1 RTT= 35.78 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf246
+Packet successfully fires , 8 bytes sent to 8.8.8.8
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 8.8.8.8: bytes= 28 icmp_seq=2 RTT= 34.85 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf245
+Packet successfully fires , 8 bytes sent to 8.8.8.8
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 8.8.8.8: bytes= 28 icmp_seq=3 RTT= 36.41 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf244
+Packet successfully fires , 8 bytes sent to 8.8.8.8
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 8.8.8.8: bytes= 28 icmp_seq=4 RTT= 37.18 ms
+
+ ---- 8.8.8.8 ping statistics ----
+4 packets transmitted, 4 received, 0% packet loss
+Average Jitter: 1.08 ms
+
+
+--- sudo ./traceroute_bin 8.8.8.8 -i ---
+
+===== Starting ICMP Traceroute to 8.8.8.8 =====
+ 1  172.20.64.1  0.47 ms (TTL Expired)
+ 2  192.168.1.1  4.77 ms (TTL Expired)
+ 3  10.240.8.32  6.40 ms (TTL Expired)
+TTL =  4 | Request timed out
+ 5  152.52.62.37  10.72 ms (TTL Expired)
+ 6  116.119.68.108  36.21 ms (TTL Expired)
+ 7  72.14.205.196  37.11 ms (TTL Expired)
+ 8  142.251.227.211  31.82 ms (TTL Expired)
+ 9  142.250.228.223  38.01 ms (TTL Expired)
+10  8.8.8.8  35.19 ms Destination Reached
+
+--- Traceroute Statistics ---
+10 packets sent, 9 packets received, 10.0% packet loss
+
+
+--- sudo ./traceroute_bin 8.8.8.8 -u ---
+
+===== Starting UDP Traceroute to 8.8.8.8 =====
+ 1 172.20.64.1 0.61 ms | TTL Expired
+TTL =  2 | Request timed out
+ 3 10.240.8.32 11.00 ms | TTL Expired
+TTL =  4 | Request timed out
+ 5 152.52.62.37 6.87 ms | TTL Expired
+ 6 182.79.177.69 35.95 ms | TTL Expired
+TTL =  7 | Request timed out
+TTL =  8 | Request timed out
+ 9 142.250.235.107 37.24 ms | TTL Expired
+10 8.8.8.8 56.59 ms | Destination Reached (Port Unreachable)
+
+--- Traceroute Statistics ---
+10 packets sent, 6 packets received, 40.0% packet loss
+
+
+--- sudo ./bandwidth_bin 8.8.8.8 ---
+Packet-pair bandwidth experiment
+Destination: 8.8.8.8
+ICMP payload: 1000 bytes; 10 pairs
+
+Pair  1: sending sequences 1 and 2...
+  Reply gap: 0.000006339 seconds; rough rate: 1272.125 Mbps
+Pair  2: sending sequences 3 and 4...
+  Reply gap: 0.000011956 seconds; rough rate: 674.473 Mbps
+Pair  3: sending sequences 5 and 6...
+  Reply gap: 0.000007989 seconds; rough rate: 1009.388 Mbps
+Pair  4: sending sequences 7 and 8...
+  Reply gap: 0.000005807 seconds; rough rate: 1388.669 Mbps
+Pair  5: sending sequences 9 and 10...
+  Reply gap: 0.000006393 seconds; rough rate: 1261.380 Mbps
+Pair  6: sending sequences 11 and 12...
+  Reply gap: 0.000008684 seconds; rough rate: 928.604 Mbps
+Pair  7: sending sequences 13 and 14...
+  Reply gap: 0.000006438 seconds; rough rate: 1252.563 Mbps
+Pair  8: sending sequences 15 and 16...
+  Reply gap: 0.000007565 seconds; rough rate: 1065.962 Mbps
+Pair  9: sending sequences 17 and 18...
+  Reply gap: 0.000006555 seconds; rough rate: 1230.206 Mbps
+Pair 10: sending sequences 19 and 20...
+  Reply gap: 0.000005952 seconds; rough rate: 1354.839 Mbps
+
+========== SUMMARY ==========
+Valid pairs: 10 / 10
+Mean reply-gap rate:   1143.821 Mbps
+Median reply-gap rate: 1241.384 Mbps
+Measurement: approximate ICMP reply-gap estimate.
+It is not a direct measurement of one-way link capacity.
+==============================
+
+
+--- sudo ./bufferbloat_bin 8.8.8.8 ---
+
+================ [1] RUPEN'S ORIGINAL PING (ping.c) ================
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf239
+Packet successfully fires , 8 bytes sent to 8.8.8.8
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 8.8.8.8: bytes= 28 icmp_seq=1 RTT= 36.67 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf238
+Packet successfully fires , 8 bytes sent to 8.8.8.8
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 8.8.8.8: bytes= 28 icmp_seq=2 RTT= 34.75 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf237
+Packet successfully fires , 8 bytes sent to 8.8.8.8
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 8.8.8.8: bytes= 28 icmp_seq=3 RTT= 36.84 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf236
+Packet successfully fires , 8 bytes sent to 8.8.8.8
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 8.8.8.8: bytes= 28 icmp_seq=4 RTT= 36.74 ms
+
+ ---- 8.8.8.8 ping statistics ----
+4 packets transmitted, 4 received, 0% packet loss
+Average Jitter: 1.37 ms
+
+================ [2] RUPEN'S UPDATED PING (updated_ping.c) ================
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf239
+Packet successfully fires , 8 bytes sent to 8.8.8.8
+TTL = 1 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 172.20.64.1: bytes=56 icmp_seq=1 RTT=0.59 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf238
+Packet successfully fires , 8 bytes sent to 8.8.8.8
+TTL = 2 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 192.168.1.1: bytes=56 icmp_seq=2 RTT=5.16 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf237
+Packet successfully fires , 8 bytes sent to 8.8.8.8
+TTL = 3 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 10.240.8.32: bytes=56 icmp_seq=3 RTT=12.48 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf236
+Packet successfully fires , 8 bytes sent to 8.8.8.8
+TTL = 4 | Listening to router response for 2 seconds...
+TTL = 4 | Request timed out / failed to receive.
+ICMP Echo Request packet constructed! Checksum generated: 0xf235
+Packet successfully fires , 8 bytes sent to 8.8.8.8
+TTL = 5 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 152.52.62.37: bytes=56 icmp_seq=5 RTT=5.83 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf234
+Packet successfully fires , 8 bytes sent to 8.8.8.8
+TTL = 6 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 116.119.68.108: bytes=56 icmp_seq=6 RTT=35.96 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf233
+Packet successfully fires , 8 bytes sent to 8.8.8.8
+TTL = 7 | Listening to router response for 2 seconds...
+Reply caught ! Received 96 bytes from the network.
+Reply from 72.14.205.196: bytes=96 icmp_seq=7 RTT=35.74 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf232
+Packet successfully fires , 8 bytes sent to 8.8.8.8
+TTL = 8 | Listening to router response for 2 seconds...
+Reply caught ! Received 96 bytes from the network.
+Reply from 142.251.227.211: bytes=96 icmp_seq=8 RTT=31.06 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf231
+Packet successfully fires , 8 bytes sent to 8.8.8.8
+TTL = 9 | Listening to router response for 2 seconds...
+Reply caught ! Received 96 bytes from the network.
+Reply from 142.250.228.223: bytes=96 icmp_seq=9 RTT=38.10 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf230
+Packet successfully fires , 8 bytes sent to 8.8.8.8
+TTL = 10 | Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+  Destination Reached !!! | Reply from 8.8.8.8: bytes= 28 icmp_seq=10 RTT= 37.14 ms
+
+ ---- 8.8.8.8 ping statistics ----
+10 packets transmitted, 9 received, 10% packet loss
+Average Jitter: 7.70 ms
+
+================ [3] SUBHASIS'S TRACEROUTE (traceroute.c) ================
+
+===== Starting ICMP Traceroute to 8.8.8.8 =====
+ 1  172.20.64.1  0.57 ms (TTL Expired)
+ 2  192.168.1.1  4.56 ms (TTL Expired)
+ 3  10.240.8.32  9.65 ms (TTL Expired)
+TTL =  4 | Request timed out
+ 5  152.52.62.37  6.74 ms (TTL Expired)
+ 6  116.119.68.108  36.68 ms (TTL Expired)
+ 7  72.14.205.196  37.34 ms (TTL Expired)
+ 8  142.251.227.211  30.81 ms (TTL Expired)
+ 9  142.250.228.223  39.52 ms (TTL Expired)
+10  8.8.8.8  36.63 ms Destination Reached
+
+--- Traceroute Statistics ---
+10 packets sent, 9 packets received, 10.0% packet loss
+
+===== Starting UDP Traceroute to 8.8.8.8 =====
+ 1 172.20.64.1 0.45 ms | TTL Expired
+ 2 192.168.1.1 5.06 ms | TTL Expired
+ 3 10.240.8.32 5.52 ms | TTL Expired
+TTL =  4 | Request timed out
+ 5 152.52.62.37 14.74 ms | TTL Expired
+ 6 182.79.177.69 37.24 ms | TTL Expired
+ 7 72.14.197.10 29.82 ms | TTL Expired
+TTL =  8 | Request timed out
+ 9 8.8.8.8 36.35 ms | Destination Reached (Port Unreachable)
+
+--- Traceroute Statistics ---
+9 packets sent, 7 packets received, 22.2% packet loss
+
+================ [4] DIPTALAL'S PATH MTU DISCOVERY (pmtu.c) ================
+PMTU discovery target: 8.8.8.8
+Search range: 576..1500 bytes (whole IPv4 packet, including headers).
+Testing  576-byte IPv4 packet (DF set, sequence 1)...
+  Matching Echo Reply received from 8.8.8.8.
+Confirmed working lower bound: 576 bytes.
+Testing 1500-byte IPv4 packet (DF set, sequence 2)...
+  Matching ICMP Fragmentation Needed received.
+  Router-reported next-hop MTU: 1480 bytes.
+Confirmed too-large upper bound: 1500 bytes.
+Testing 1038-byte IPv4 packet (DF set, sequence 3)...
+  Matching Echo Reply received from 8.8.8.8.
+  1038 bytes succeeded; updating lower bound.
+  Current bounds: working=1038, too-large=1500 bytes.
+Testing 1269-byte IPv4 packet (DF set, sequence 4)...
+  Matching Echo Reply received from 8.8.8.8.
+  1269 bytes succeeded; updating lower bound.
+  Current bounds: working=1269, too-large=1500 bytes.
+Testing 1384-byte IPv4 packet (DF set, sequence 5)...
+  Matching Echo Reply received from 8.8.8.8.
+  1384 bytes succeeded; updating lower bound.
+  Current bounds: working=1384, too-large=1500 bytes.
+Testing 1442-byte IPv4 packet (DF set, sequence 6)...
+  Matching Echo Reply received from 8.8.8.8.
+  1442 bytes succeeded; updating lower bound.
+  Current bounds: working=1442, too-large=1500 bytes.
+Testing 1471-byte IPv4 packet (DF set, sequence 7)...
+  Matching Echo Reply received from 8.8.8.8.
+  1471 bytes succeeded; updating lower bound.
+  Current bounds: working=1471, too-large=1500 bytes.
+Testing 1485-byte IPv4 packet (DF set, sequence 8)...
+  Local network stack reports packet too large.
+  1485 bytes required fragmentation; updating upper bound.
+  Current bounds: working=1471, too-large=1485 bytes.
+Testing 1478-byte IPv4 packet (DF set, sequence 9)...
+  Matching Echo Reply received from 8.8.8.8.
+  1478 bytes succeeded; updating lower bound.
+  Current bounds: working=1478, too-large=1485 bytes.
+Testing 1481-byte IPv4 packet (DF set, sequence 10)...
+  Local network stack reports packet too large.
+  1481 bytes required fragmentation; updating upper bound.
+  Current bounds: working=1478, too-large=1481 bytes.
+Testing 1479-byte IPv4 packet (DF set, sequence 11)...
+  Matching Echo Reply received from 8.8.8.8.
+  1479 bytes succeeded; updating lower bound.
+  Current bounds: working=1479, too-large=1481 bytes.
+Testing 1480-byte IPv4 packet (DF set, sequence 12)...
+  Matching Echo Reply received from 8.8.8.8.
+  1480 bytes succeeded; updating lower bound.
+  Current bounds: working=1480, too-large=1481 bytes.
+
+========== PMTU RESULT ==========
+Largest confirmed working packet: 1480 bytes
+Smallest confirmed too-large packet: 1481 bytes
+Estimated PMTU within the tested range: 1480 bytes
+=================================
+Note: ICMP filtering/rate limiting can affect active probing.
+
+================ [5] DIPTALAL'S BANDWIDTH ESTIMATION (bandwidth.c) ================
+Packet-pair bandwidth experiment
+Destination: 8.8.8.8
+ICMP payload: 1000 bytes; 10 pairs
+
+Pair  1: sending sequences 1 and 2...
+  Reply gap: 0.000006409 seconds; rough rate: 1258.231 Mbps
+Pair  2: sending sequences 3 and 4...
+  Reply gap: 0.000007594 seconds; rough rate: 1061.891 Mbps
+Pair  3: sending sequences 5 and 6...
+  Reply gap: 0.006196809 seconds; rough rate: 1.301 Mbps
+Pair  4: sending sequences 7 and 8...
+  Reply gap: 0.000007462 seconds; rough rate: 1080.675 Mbps
+Pair  5: sending sequences 9 and 10...
+  Reply gap: 0.000007236 seconds; rough rate: 1114.428 Mbps
+Pair  6: sending sequences 11 and 12...
+  Reply gap: 0.000005827 seconds; rough rate: 1383.903 Mbps
+Pair  7: sending sequences 13 and 14...
+  Reply gap: 0.000007688 seconds; rough rate: 1048.907 Mbps
+Pair  8: sending sequences 15 and 16...
+  Reply gap: 0.000006193 seconds; rough rate: 1302.115 Mbps
+Pair  9: sending sequences 17 and 18...
+  Reply gap: 0.000008815 seconds; rough rate: 914.804 Mbps
+Pair 10: sending sequences 19 and 20...
+  Reply gap: 0.000006334 seconds; rough rate: 1273.129 Mbps
+
+========== SUMMARY ==========
+Valid pairs: 10 / 10
+Mean reply-gap rate:   1043.938 Mbps
+Median reply-gap rate: 1097.552 Mbps
+Measurement: approximate ICMP reply-gap estimate.
+It is not a direct measurement of one-way link capacity.
+==============================
+
+================ [6] AMLAN'S BUFFERBLOAT ENGINE ================
+
+--- [IDLE_PHASE] Measuring RTT via Rupen's Ping Engine to 8.8.8.8 ---
+Reply from 8.8.8.8: icmp_seq=1 RTT=36.89 ms
+Reply from 8.8.8.8: icmp_seq=2 RTT=37.59 ms
+Reply from 8.8.8.8: icmp_seq=3 RTT=37.35 ms
+Reply from 8.8.8.8: icmp_seq=4 RTT=41.44 ms
+
+--- [LOADED_PHASE] Measuring RTT via Rupen's Ping Engine to 8.8.8.8 ---
+Reply from 8.8.8.8: icmp_seq=101 RTT=36.74 ms
+Reply from 8.8.8.8: icmp_seq=102 RTT=36.59 ms
+Reply from 8.8.8.8: icmp_seq=103 RTT=36.32 ms
+Reply from 8.8.8.8: icmp_seq=104 RTT=36.29 ms
+
+Bufferbloat Summary for 8.8.8.8 -> Idle RTT: 38.32 ms | Loaded RTT: 36.49 ms | Queuing Delay: 0.00 ms
+
+RESULT_CSV:8.8.8.8,38.32,36.49
+
+
+================ DESTINATION: 1.1.1.1 ================
+
+--- sudo ./ping_bin 1.1.1.1 ---
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf235
+Packet successfully fires , 8 bytes sent to 1.1.1.1
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 1.1.1.1: bytes= 28 icmp_seq=1 RTT= 5.30 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf234
+Packet successfully fires , 8 bytes sent to 1.1.1.1
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 1.1.1.1: bytes= 28 icmp_seq=2 RTT= 6.75 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf233
+Packet successfully fires , 8 bytes sent to 1.1.1.1
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 1.1.1.1: bytes= 28 icmp_seq=3 RTT= 6.86 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf232
+Packet successfully fires , 8 bytes sent to 1.1.1.1
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 1.1.1.1: bytes= 28 icmp_seq=4 RTT= 5.89 ms
+
+ ---- 1.1.1.1 ping statistics ----
+4 packets transmitted, 4 received, 0% packet loss
+Average Jitter: 0.84 ms
+
+
+--- sudo ./traceroute_bin 1.1.1.1 -i ---
+
+===== Starting ICMP Traceroute to 1.1.1.1 =====
+ 1  172.20.64.1  1.46 ms (TTL Expired)
+ 2  192.168.1.1  4.90 ms (TTL Expired)
+ 3  10.240.8.32  6.71 ms (TTL Expired)
+TTL =  4 | Request timed out
+ 5  152.52.62.5  7.00 ms (TTL Expired)
+ 6  182.79.255.51  6.80 ms (TTL Expired)
+ 7  182.79.223.43  10.01 ms (TTL Expired)
+ 8  1.1.1.1  5.72 ms Destination Reached
+
+--- Traceroute Statistics ---
+8 packets sent, 7 packets received, 12.5% packet loss
+
+
+--- sudo ./traceroute_bin 1.1.1.1 -u ---
+
+===== Starting UDP Traceroute to 1.1.1.1 =====
+ 1 172.20.64.1 0.42 ms | TTL Expired
+ 2 192.168.1.1 4.73 ms | TTL Expired
+ 3 10.240.8.32 6.23 ms | TTL Expired
+TTL =  4 | Request timed out
+ 5 152.52.62.37 6.94 ms | TTL Expired
+ 6 182.79.255.51 6.45 ms | TTL Expired
+ 7 1.1.1.1 6.57 ms | Destination Reached (Port Unreachable)
+
+--- Traceroute Statistics ---
+7 packets sent, 6 packets received, 14.3% packet loss
+
+
+--- sudo ./bandwidth_bin 1.1.1.1 ---
+Packet-pair bandwidth experiment
+Destination: 1.1.1.1
+ICMP payload: 1000 bytes; 10 pairs
+
+Pair  1: sending sequences 1 and 2...
+  Reply gap: 0.000004229 seconds; rough rate: 1906.834 Mbps
+Pair  2: sending sequences 3 and 4...
+  Reply gap: 0.000006510 seconds; rough rate: 1238.710 Mbps
+Pair  3: sending sequences 5 and 6...
+  Reply gap: 0.000004553 seconds; rough rate: 1771.140 Mbps
+Pair  4: sending sequences 7 and 8...
+  Reply gap: 0.000005861 seconds; rough rate: 1375.874 Mbps
+Pair  5: sending sequences 9 and 10...
+  Reply gap: 0.000006510 seconds; rough rate: 1238.710 Mbps
+Pair  6: sending sequences 11 and 12...
+  Reply gap: 0.000006069 seconds; rough rate: 1328.720 Mbps
+Pair  7: sending sequences 13 and 14...
+  Reply gap: 0.000004563 seconds; rough rate: 1767.258 Mbps
+Pair  8: sending sequences 15 and 16...
+  Reply gap: 0.000003760 seconds; rough rate: 2144.681 Mbps
+Pair  9: sending sequences 17 and 18...
+  Reply gap: 0.000005284 seconds; rough rate: 1526.117 Mbps
+Pair 10: sending sequences 19 and 20...
+  Reply gap: 0.002628307 seconds; rough rate: 3.068 Mbps
+
+========== SUMMARY ==========
+Valid pairs: 10 / 10
+Mean reply-gap rate:   1430.111 Mbps
+Median reply-gap rate: 1450.996 Mbps
+Measurement: approximate ICMP reply-gap estimate.
+It is not a direct measurement of one-way link capacity.
+==============================
+
+
+--- sudo ./bufferbloat_bin 1.1.1.1 ---
+
+================ [1] RUPEN'S ORIGINAL PING (ping.c) ================
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf227
+Packet successfully fires , 8 bytes sent to 1.1.1.1
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 1.1.1.1: bytes= 28 icmp_seq=1 RTT= 6.88 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf226
+Packet successfully fires , 8 bytes sent to 1.1.1.1
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 1.1.1.1: bytes= 28 icmp_seq=2 RTT= 6.17 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf225
+Packet successfully fires , 8 bytes sent to 1.1.1.1
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 1.1.1.1: bytes= 28 icmp_seq=3 RTT= 5.67 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf224
+Packet successfully fires , 8 bytes sent to 1.1.1.1
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 1.1.1.1: bytes= 28 icmp_seq=4 RTT= 5.78 ms
+
+ ---- 1.1.1.1 ping statistics ----
+4 packets transmitted, 4 received, 0% packet loss
+Average Jitter: 0.44 ms
+
+================ [2] RUPEN'S UPDATED PING (updated_ping.c) ================
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf227
+Packet successfully fires , 8 bytes sent to 1.1.1.1
+TTL = 1 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 172.20.64.1: bytes=56 icmp_seq=1 RTT=0.67 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf226
+Packet successfully fires , 8 bytes sent to 1.1.1.1
+TTL = 2 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 192.168.1.1: bytes=56 icmp_seq=2 RTT=4.42 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf225
+Packet successfully fires , 8 bytes sent to 1.1.1.1
+TTL = 3 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 10.240.8.32: bytes=56 icmp_seq=3 RTT=12.56 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf224
+Packet successfully fires , 8 bytes sent to 1.1.1.1
+TTL = 4 | Listening to router response for 2 seconds...
+TTL = 4 | Request timed out / failed to receive.
+ICMP Echo Request packet constructed! Checksum generated: 0xf223
+Packet successfully fires , 8 bytes sent to 1.1.1.1
+TTL = 5 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 152.52.62.5: bytes=56 icmp_seq=5 RTT=7.42 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf222
+Packet successfully fires , 8 bytes sent to 1.1.1.1
+TTL = 6 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 182.79.255.51: bytes=56 icmp_seq=6 RTT=6.30 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf221
+Packet successfully fires , 8 bytes sent to 1.1.1.1
+TTL = 7 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 182.79.223.43: bytes=56 icmp_seq=7 RTT=8.57 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf220
+Packet successfully fires , 8 bytes sent to 1.1.1.1
+TTL = 8 | Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+  Destination Reached !!! | Reply from 1.1.1.1: bytes= 28 icmp_seq=8 RTT= 5.31 ms
+
+ ---- 1.1.1.1 ping statistics ----
+8 packets transmitted, 7 received, 12% packet loss
+Average Jitter: 3.95 ms
+
+================ [3] SUBHASIS'S TRACEROUTE (traceroute.c) ================
+
+===== Starting ICMP Traceroute to 1.1.1.1 =====
+ 1  172.20.64.1  0.49 ms (TTL Expired)
+ 2  192.168.1.1  4.53 ms (TTL Expired)
+ 3  10.240.8.32  6.19 ms (TTL Expired)
+TTL =  4 | Request timed out
+ 5  152.52.62.5  6.47 ms (TTL Expired)
+ 6  182.79.255.51  6.39 ms (TTL Expired)
+ 7  182.79.223.43  6.94 ms (TTL Expired)
+ 8  1.1.1.1  6.07 ms Destination Reached
+
+--- Traceroute Statistics ---
+8 packets sent, 7 packets received, 12.5% packet loss
+
+===== Starting UDP Traceroute to 1.1.1.1 =====
+ 1 172.20.64.1 0.36 ms | TTL Expired
+ 2 192.168.1.1 4.59 ms | TTL Expired
+ 3 10.240.8.32 6.37 ms | TTL Expired
+TTL =  4 | Request timed out
+ 5 152.52.62.5 15.92 ms | TTL Expired
+ 6 182.79.223.43 17.01 ms | TTL Expired
+ 7 182.79.223.43 50.45 ms | TTL Expired
+ 8 1.1.1.1 17.77 ms | Destination Reached (Port Unreachable)
+
+--- Traceroute Statistics ---
+8 packets sent, 7 packets received, 12.5% packet loss
+
+================ [4] DIPTALAL'S PATH MTU DISCOVERY (pmtu.c) ================
+PMTU discovery target: 1.1.1.1
+Search range: 576..1500 bytes (whole IPv4 packet, including headers).
+Testing  576-byte IPv4 packet (DF set, sequence 1)...
+  Matching Echo Reply received from 1.1.1.1.
+Confirmed working lower bound: 576 bytes.
+Testing 1500-byte IPv4 packet (DF set, sequence 2)...
+  Matching ICMP Fragmentation Needed received.
+  Router-reported next-hop MTU: 1480 bytes.
+Confirmed too-large upper bound: 1500 bytes.
+Testing 1038-byte IPv4 packet (DF set, sequence 3)...
+  Matching Echo Reply received from 1.1.1.1.
+  1038 bytes succeeded; updating lower bound.
+  Current bounds: working=1038, too-large=1500 bytes.
+Testing 1269-byte IPv4 packet (DF set, sequence 4)...
+  Matching Echo Reply received from 1.1.1.1.
+  1269 bytes succeeded; updating lower bound.
+  Current bounds: working=1269, too-large=1500 bytes.
+Testing 1384-byte IPv4 packet (DF set, sequence 5)...
+  Matching Echo Reply received from 1.1.1.1.
+  1384 bytes succeeded; updating lower bound.
+  Current bounds: working=1384, too-large=1500 bytes.
+Testing 1442-byte IPv4 packet (DF set, sequence 6)...
+  Matching Echo Reply received from 1.1.1.1.
+  1442 bytes succeeded; updating lower bound.
+  Current bounds: working=1442, too-large=1500 bytes.
+Testing 1471-byte IPv4 packet (DF set, sequence 7)...
+  Matching Echo Reply received from 1.1.1.1.
+  1471 bytes succeeded; updating lower bound.
+  Current bounds: working=1471, too-large=1500 bytes.
+Testing 1485-byte IPv4 packet (DF set, sequence 8)...
+  Local network stack reports packet too large.
+  1485 bytes required fragmentation; updating upper bound.
+  Current bounds: working=1471, too-large=1485 bytes.
+Testing 1478-byte IPv4 packet (DF set, sequence 9)...
+  Matching Echo Reply received from 1.1.1.1.
+  1478 bytes succeeded; updating lower bound.
+  Current bounds: working=1478, too-large=1485 bytes.
+Testing 1481-byte IPv4 packet (DF set, sequence 10)...
+  Local network stack reports packet too large.
+  1481 bytes required fragmentation; updating upper bound.
+  Current bounds: working=1478, too-large=1481 bytes.
+Testing 1479-byte IPv4 packet (DF set, sequence 11)...
+  Matching Echo Reply received from 1.1.1.1.
+  1479 bytes succeeded; updating lower bound.
+  Current bounds: working=1479, too-large=1481 bytes.
+Testing 1480-byte IPv4 packet (DF set, sequence 12)...
+  Matching Echo Reply received from 1.1.1.1.
+  1480 bytes succeeded; updating lower bound.
+  Current bounds: working=1480, too-large=1481 bytes.
+
+========== PMTU RESULT ==========
+Largest confirmed working packet: 1480 bytes
+Smallest confirmed too-large packet: 1481 bytes
+Estimated PMTU within the tested range: 1480 bytes
+=================================
+Note: ICMP filtering/rate limiting can affect active probing.
+
+================ [5] DIPTALAL'S BANDWIDTH ESTIMATION (bandwidth.c) ================
+Packet-pair bandwidth experiment
+Destination: 1.1.1.1
+ICMP payload: 1000 bytes; 10 pairs
+
+Pair  1: sending sequences 1 and 2...
+  Reply gap: 0.000008149 seconds; rough rate: 989.569 Mbps
+Pair  2: sending sequences 3 and 4...
+  Reply gap: 0.000007130 seconds; rough rate: 1130.996 Mbps
+Pair  3: sending sequences 5 and 6...
+  Reply gap: 0.000004712 seconds; rough rate: 1711.375 Mbps
+Pair  4: sending sequences 7 and 8...
+  Reply gap: 0.000003257 seconds; rough rate: 2475.898 Mbps
+Pair  5: sending sequences 9 and 10...
+  Reply gap: 0.000004863 seconds; rough rate: 1658.236 Mbps
+Pair  6: sending sequences 11 and 12...
+  Reply gap: 0.000007233 seconds; rough rate: 1114.890 Mbps
+Pair  7: sending sequences 13 and 14...
+  Reply gap: 0.000004882 seconds; rough rate: 1651.782 Mbps
+Pair  8: sending sequences 15 and 16...
+  Reply gap: 0.000004872 seconds; rough rate: 1655.172 Mbps
+Pair  9: sending sequences 17 and 18...
+  Reply gap: 0.000008291 seconds; rough rate: 972.621 Mbps
+Pair 10: sending sequences 19 and 20...
+  Reply gap: 0.000008555 seconds; rough rate: 942.607 Mbps
+
+========== SUMMARY ==========
+Valid pairs: 10 / 10
+Mean reply-gap rate:   1430.315 Mbps
+Median reply-gap rate: 1391.389 Mbps
+Measurement: approximate ICMP reply-gap estimate.
+It is not a direct measurement of one-way link capacity.
+==============================
+
+================ [6] AMLAN'S BUFFERBLOAT ENGINE ================
+
+--- [IDLE_PHASE] Measuring RTT via Rupen's Ping Engine to 1.1.1.1 ---
+Reply from 1.1.1.1: icmp_seq=1 RTT=6.31 ms
+Reply from 1.1.1.1: icmp_seq=2 RTT=64.35 ms
+Reply from 1.1.1.1: icmp_seq=3 RTT=6.10 ms
+Reply from 1.1.1.1: icmp_seq=4 RTT=63.32 ms
+
+--- [LOADED_PHASE] Measuring RTT via Rupen's Ping Engine to 1.1.1.1 ---
+Reply from 1.1.1.1: icmp_seq=101 RTT=116.83 ms
+Reply from 1.1.1.1: icmp_seq=102 RTT=84.63 ms
+Reply from 1.1.1.1: icmp_seq=103 RTT=94.84 ms
+Reply from 1.1.1.1: icmp_seq=104 RTT=56.92 ms
+
+Bufferbloat Summary for 1.1.1.1 -> Idle RTT: 35.02 ms | Loaded RTT: 88.31 ms | Queuing Delay: 53.28 ms
+
+RESULT_CSV:1.1.1.1,35.02,88.31
+
+
+================ DESTINATION: 208.67.222.222 ================
+
+--- sudo ./ping_bin 208.67.222.222 ---
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf223
+Packet successfully fires , 8 bytes sent to 208.67.222.222
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 208.67.222.222: bytes= 28 icmp_seq=1 RTT= 104.37 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf222
+Packet successfully fires , 8 bytes sent to 208.67.222.222
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 208.67.222.222: bytes= 28 icmp_seq=2 RTT= 75.40 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf221
+Packet successfully fires , 8 bytes sent to 208.67.222.222
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 208.67.222.222: bytes= 28 icmp_seq=3 RTT= 66.17 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf220
+Packet successfully fires , 8 bytes sent to 208.67.222.222
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 208.67.222.222: bytes= 28 icmp_seq=4 RTT= 33.24 ms
+
+ ---- 208.67.222.222 ping statistics ----
+4 packets transmitted, 4 received, 0% packet loss
+Average Jitter: 23.71 ms
+
+
+--- sudo ./traceroute_bin 208.67.222.222 -i ---
+
+===== Starting ICMP Traceroute to 208.67.222.222 =====
+ 1  172.20.64.1  0.46 ms (TTL Expired)
+ 2  192.168.1.1  5.39 ms (TTL Expired)
+ 3  10.240.8.32  7.09 ms (TTL Expired)
+TTL =  4 | Request timed out
+ 5  152.52.62.5  14.34 ms (TTL Expired)
+ 6  116.119.121.101  62.19 ms (TTL Expired)
+TTL =  7 | Request timed out
+TTL =  8 | Request timed out
+ 9  115.244.251.6  147.83 ms (TTL Expired)
+10  208.67.222.222  86.79 ms Destination Reached
+
+--- Traceroute Statistics ---
+10 packets sent, 7 packets received, 30.0% packet loss
+
+
+--- sudo ./traceroute_bin 208.67.222.222 -u ---
+
+===== Starting UDP Traceroute to 208.67.222.222 =====
+ 1 172.20.64.1 0.46 ms | TTL Expired
+TTL =  2 | Request timed out
+ 3 10.240.8.32 9.02 ms | TTL Expired
+TTL =  4 | Request timed out
+ 5 152.52.62.37 6.20 ms | TTL Expired
+ 6 116.119.121.101 12.94 ms | TTL Expired
+ 7 182.79.164.37 25.79 ms | TTL Expired
+TTL =  8 | Request timed out
+ 9 115.244.251.6 36.90 ms | TTL Expired
+TTL = 10 | Request timed out
+TTL = 11 | Request timed out
+TTL = 12 | Request timed out
+TTL = 13 | Request timed out
+TTL = 14 | Request timed out
+TTL = 15 | Request timed out
+TTL = 16 | Request timed out
+TTL = 17 | Request timed out
+TTL = 18 | Request timed out
+TTL = 19 | Request timed out
+TTL = 20 | Request timed out
+TTL = 21 | Request timed out
+TTL = 22 | Request timed out
+TTL = 23 | Request timed out
+TTL = 24 | Request timed out
+TTL = 25 | Request timed out
+TTL = 26 | Request timed out
+TTL = 27 | Request timed out
+TTL = 28 | Request timed out
+TTL = 29 | Request timed out
+TTL = 30 | Request timed out
+
+--- Traceroute Statistics ---
+30 packets sent, 6 packets received, 80.0% packet loss
+
+
+--- sudo ./bandwidth_bin 208.67.222.222 ---
+Packet-pair bandwidth experiment
+Destination: 208.67.222.222
+ICMP payload: 1000 bytes; 10 pairs
+
+Pair  1: sending sequences 1 and 2...
+  Reply gap: 0.000007441 seconds; rough rate: 1083.725 Mbps
+Pair  2: sending sequences 3 and 4...
+  Reply gap: 0.000022855 seconds; rough rate: 352.833 Mbps
+Pair  3: sending sequences 5 and 6...
+  Reply gap: 0.000010984 seconds; rough rate: 734.159 Mbps
+Pair  4: sending sequences 7 and 8...
+  Reply gap: 0.000004762 seconds; rough rate: 1693.406 Mbps
+Pair  5: sending sequences 9 and 10...
+  Reply gap: 0.000004812 seconds; rough rate: 1675.810 Mbps
+Pair  6: sending sequences 11 and 12...
+  Reply gap: 0.000005920 seconds; rough rate: 1362.162 Mbps
+Pair  7: sending sequences 13 and 14...
+  Reply gap: 0.000008407 seconds; rough rate: 959.201 Mbps
+Pair  8: sending sequences 15 and 16...
+  Reply gap: 0.000007219 seconds; rough rate: 1117.052 Mbps
+Pair  9: sending sequences 17 and 18...
+  Reply gap: 0.000009202 seconds; rough rate: 876.331 Mbps
+Pair 10: sending sequences 19 and 20...
+  Reply gap: 0.000005557 seconds; rough rate: 1451.143 Mbps
+
+========== SUMMARY ==========
+Valid pairs: 10 / 10
+Mean reply-gap rate:   1130.582 Mbps
+Median reply-gap rate: 1100.389 Mbps
+Measurement: approximate ICMP reply-gap estimate.
+It is not a direct measurement of one-way link capacity.
+==============================
+
+
+--- sudo ./bufferbloat_bin 208.67.222.222 ---
+
+================ [1] RUPEN'S ORIGINAL PING (ping.c) ================
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf215
+Packet successfully fires , 8 bytes sent to 208.67.222.222
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 208.67.222.222: bytes= 28 icmp_seq=1 RTT= 33.85 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf214
+Packet successfully fires , 8 bytes sent to 208.67.222.222
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 208.67.222.222: bytes= 28 icmp_seq=2 RTT= 31.41 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf213
+Packet successfully fires , 8 bytes sent to 208.67.222.222
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 208.67.222.222: bytes= 28 icmp_seq=3 RTT= 32.07 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf212
+Packet successfully fires , 8 bytes sent to 208.67.222.222
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 208.67.222.222: bytes= 28 icmp_seq=4 RTT= 30.97 ms
+
+ ---- 208.67.222.222 ping statistics ----
+4 packets transmitted, 4 received, 0% packet loss
+Average Jitter: 1.40 ms
+
+================ [2] RUPEN'S UPDATED PING (updated_ping.c) ================
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf215
+Packet successfully fires , 8 bytes sent to 208.67.222.222
+TTL = 1 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 172.20.64.1: bytes=56 icmp_seq=1 RTT=0.64 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf214
+Packet successfully fires , 8 bytes sent to 208.67.222.222
+TTL = 2 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 192.168.1.1: bytes=56 icmp_seq=2 RTT=4.74 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf213
+Packet successfully fires , 8 bytes sent to 208.67.222.222
+TTL = 3 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 10.240.8.32: bytes=56 icmp_seq=3 RTT=6.15 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf212
+Packet successfully fires , 8 bytes sent to 208.67.222.222
+TTL = 4 | Listening to router response for 2 seconds...
+TTL = 4 | Request timed out / failed to receive.
+ICMP Echo Request packet constructed! Checksum generated: 0xf211
+Packet successfully fires , 8 bytes sent to 208.67.222.222
+TTL = 5 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 152.52.62.5: bytes=56 icmp_seq=5 RTT=6.29 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf210
+Packet successfully fires , 8 bytes sent to 208.67.222.222
+TTL = 6 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 116.119.121.101: bytes=56 icmp_seq=6 RTT=11.44 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf20f
+Packet successfully fires , 8 bytes sent to 208.67.222.222
+TTL = 7 | Listening to router response for 2 seconds...
+Reply caught ! Received 96 bytes from the network.
+Reply from 182.79.164.37: bytes=96 icmp_seq=7 RTT=34.42 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf20e
+Packet successfully fires , 8 bytes sent to 208.67.222.222
+TTL = 8 | Listening to router response for 2 seconds...
+TTL = 8 | Request timed out / failed to receive.
+ICMP Echo Request packet constructed! Checksum generated: 0xf20d
+Packet successfully fires , 8 bytes sent to 208.67.222.222
+TTL = 9 | Listening to router response for 2 seconds...
+Reply caught ! Received 96 bytes from the network.
+Reply from 115.244.251.6: bytes=96 icmp_seq=9 RTT=36.30 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf20c
+Packet successfully fires , 8 bytes sent to 208.67.222.222
+TTL = 10 | Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+  Destination Reached !!! | Reply from 208.67.222.222: bytes= 28 icmp_seq=10 RTT= 30.71 ms
+
+ ---- 208.67.222.222 ping statistics ----
+10 packets transmitted, 8 received, 20% packet loss
+Average Jitter: 5.89 ms
+
+================ [3] SUBHASIS'S TRACEROUTE (traceroute.c) ================
+
+===== Starting ICMP Traceroute to 208.67.222.222 =====
+ 1  172.20.64.1  0.55 ms (TTL Expired)
+ 2  192.168.1.1  5.17 ms (TTL Expired)
+ 3  10.240.8.32  5.34 ms (TTL Expired)
+TTL =  4 | Request timed out
+ 5  152.52.62.5  21.44 ms (TTL Expired)
+ 6  116.119.121.101  14.52 ms (TTL Expired)
+ 7  182.79.164.37  19.15 ms (TTL Expired)
+TTL =  8 | Request timed out
+ 9  115.244.251.6  35.76 ms (TTL Expired)
+10  208.67.222.222  30.62 ms Destination Reached
+
+--- Traceroute Statistics ---
+10 packets sent, 8 packets received, 20.0% packet loss
+
+===== Starting UDP Traceroute to 208.67.222.222 =====
+ 1 172.20.64.1 0.60 ms | TTL Expired
+ 2 192.168.1.1 5.43 ms | TTL Expired
+ 3 10.240.8.32 5.63 ms | TTL Expired
+TTL =  4 | Request timed out
+ 5 152.52.62.5 5.61 ms | TTL Expired
+ 6 116.119.104.88 13.93 ms | TTL Expired
+ 7 182.79.164.37 12.78 ms | TTL Expired
+TTL =  8 | Request timed out
+ 9 115.244.251.6 38.77 ms | TTL Expired
+TTL = 10 | Request timed out
+TTL = 11 | Request timed out
+TTL = 12 | Request timed out
+TTL = 13 | Request timed out
+TTL = 14 | Request timed out
+TTL = 15 | Request timed out
+TTL = 16 | Request timed out
+TTL = 17 | Request timed out
+TTL = 18 | Request timed out
+TTL = 19 | Request timed out
+TTL = 20 | Request timed out
+TTL = 21 | Request timed out
+TTL = 22 | Request timed out
+TTL = 23 | Request timed out
+TTL = 24 | Request timed out
+TTL = 25 | Request timed out
+TTL = 26 | Request timed out
+TTL = 27 | Request timed out
+TTL = 28 | Request timed out
+TTL = 29 | Request timed out
+TTL = 30 | Request timed out
+
+--- Traceroute Statistics ---
+30 packets sent, 7 packets received, 76.7% packet loss
+
+================ [4] DIPTALAL'S PATH MTU DISCOVERY (pmtu.c) ================
+PMTU discovery target: 208.67.222.222
+Search range: 576..1500 bytes (whole IPv4 packet, including headers).
+Testing  576-byte IPv4 packet (DF set, sequence 1)...
+  Matching Echo Reply received from 208.67.222.222.
+Confirmed working lower bound: 576 bytes.
+Testing 1500-byte IPv4 packet (DF set, sequence 2)...
+  Matching ICMP Fragmentation Needed received.
+  Router-reported next-hop MTU: 1480 bytes.
+Confirmed too-large upper bound: 1500 bytes.
+Testing 1038-byte IPv4 packet (DF set, sequence 3)...
+  Matching Echo Reply received from 208.67.222.222.
+  1038 bytes succeeded; updating lower bound.
+  Current bounds: working=1038, too-large=1500 bytes.
+Testing 1269-byte IPv4 packet (DF set, sequence 4)...
+  Matching Echo Reply received from 208.67.222.222.
+  1269 bytes succeeded; updating lower bound.
+  Current bounds: working=1269, too-large=1500 bytes.
+Testing 1384-byte IPv4 packet (DF set, sequence 5)...
+  Matching Echo Reply received from 208.67.222.222.
+  1384 bytes succeeded; updating lower bound.
+  Current bounds: working=1384, too-large=1500 bytes.
+Testing 1442-byte IPv4 packet (DF set, sequence 6)...
+  Matching Echo Reply received from 208.67.222.222.
+  1442 bytes succeeded; updating lower bound.
+  Current bounds: working=1442, too-large=1500 bytes.
+Testing 1471-byte IPv4 packet (DF set, sequence 7)...
+  Matching Echo Reply received from 208.67.222.222.
+  1471 bytes succeeded; updating lower bound.
+  Current bounds: working=1471, too-large=1500 bytes.
+Testing 1485-byte IPv4 packet (DF set, sequence 8)...
+  Local network stack reports packet too large.
+  1485 bytes required fragmentation; updating upper bound.
+  Current bounds: working=1471, too-large=1485 bytes.
+Testing 1478-byte IPv4 packet (DF set, sequence 9)...
+  Matching Echo Reply received from 208.67.222.222.
+  1478 bytes succeeded; updating lower bound.
+  Current bounds: working=1478, too-large=1485 bytes.
+Testing 1481-byte IPv4 packet (DF set, sequence 10)...
+  Local network stack reports packet too large.
+  1481 bytes required fragmentation; updating upper bound.
+  Current bounds: working=1478, too-large=1481 bytes.
+Testing 1479-byte IPv4 packet (DF set, sequence 11)...
+  Matching Echo Reply received from 208.67.222.222.
+  1479 bytes succeeded; updating lower bound.
+  Current bounds: working=1479, too-large=1481 bytes.
+Testing 1480-byte IPv4 packet (DF set, sequence 12)...
+  Matching Echo Reply received from 208.67.222.222.
+  1480 bytes succeeded; updating lower bound.
+  Current bounds: working=1480, too-large=1481 bytes.
+
+========== PMTU RESULT ==========
+Largest confirmed working packet: 1480 bytes
+Smallest confirmed too-large packet: 1481 bytes
+Estimated PMTU within the tested range: 1480 bytes
+=================================
+Note: ICMP filtering/rate limiting can affect active probing.
+
+================ [5] DIPTALAL'S BANDWIDTH ESTIMATION (bandwidth.c) ================
+Packet-pair bandwidth experiment
+Destination: 208.67.222.222
+ICMP payload: 1000 bytes; 10 pairs
+
+Pair  1: sending sequences 1 and 2...
+  Reply gap: 0.000007067 seconds; rough rate: 1141.078 Mbps
+Pair  2: sending sequences 3 and 4...
+  Reply gap: 0.000006529 seconds; rough rate: 1235.105 Mbps
+Pair  3: sending sequences 5 and 6...
+  Reply gap: 0.000006766 seconds; rough rate: 1191.842 Mbps
+Pair  4: sending sequences 7 and 8...
+  Reply gap: 0.000008196 seconds; rough rate: 983.895 Mbps
+Pair  5: sending sequences 9 and 10...
+  Reply gap: 0.004451241 seconds; rough rate: 1.812 Mbps
+Pair  6: sending sequences 11 and 12...
+  Reply gap: 0.000009106 seconds; rough rate: 885.570 Mbps
+Pair  7: sending sequences 13 and 14...
+  Reply gap: 0.000016045 seconds; rough rate: 502.586 Mbps
+Pair  8: sending sequences 15 and 16...
+  Reply gap: 0.000008050 seconds; rough rate: 1001.739 Mbps
+Pair  9: sending sequences 17 and 18...
+  Reply gap: 0.000009498 seconds; rough rate: 849.021 Mbps
+Pair 10: sending sequences 19 and 20...
+  Reply gap: 0.000012603 seconds; rough rate: 639.848 Mbps
+
+========== SUMMARY ==========
+Valid pairs: 10 / 10
+Mean reply-gap rate:   843.250 Mbps
+Median reply-gap rate: 934.732 Mbps
+Measurement: approximate ICMP reply-gap estimate.
+It is not a direct measurement of one-way link capacity.
+==============================
+
+================ [6] AMLAN'S BUFFERBLOAT ENGINE ================
+
+--- [IDLE_PHASE] Measuring RTT via Rupen's Ping Engine to 208.67.222.222 ---
+Reply from 208.67.222.222: icmp_seq=1 RTT=30.98 ms
+Reply from 208.67.222.222: icmp_seq=2 RTT=29.70 ms
+Reply from 208.67.222.222: icmp_seq=3 RTT=31.19 ms
+Reply from 208.67.222.222: icmp_seq=4 RTT=37.36 ms
+
+--- [LOADED_PHASE] Measuring RTT via Rupen's Ping Engine to 208.67.222.222 ---
+Reply from 208.67.222.222: icmp_seq=101 RTT=30.27 ms
+Reply from 208.67.222.222: icmp_seq=102 RTT=30.55 ms
+Reply from 208.67.222.222: icmp_seq=103 RTT=31.47 ms
+Reply from 208.67.222.222: icmp_seq=104 RTT=30.06 ms
+
+Bufferbloat Summary for 208.67.222.222 -> Idle RTT: 32.31 ms | Loaded RTT: 30.59 ms | Queuing Delay: 0.00 ms
+
+RESULT_CSV:208.67.222.222,32.31,30.59
+
+
+================ DESTINATION: 9.9.9.9 ================
+
+--- sudo ./ping_bin 9.9.9.9 ---
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf20f
+Packet successfully fires , 8 bytes sent to 9.9.9.9
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 9.9.9.9: bytes= 28 icmp_seq=1 RTT= 159.40 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf20e
+Packet successfully fires , 8 bytes sent to 9.9.9.9
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 9.9.9.9: bytes= 28 icmp_seq=2 RTT= 158.94 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf20d
+Packet successfully fires , 8 bytes sent to 9.9.9.9
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 9.9.9.9: bytes= 28 icmp_seq=3 RTT= 159.15 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf20c
+Packet successfully fires , 8 bytes sent to 9.9.9.9
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 9.9.9.9: bytes= 28 icmp_seq=4 RTT= 158.02 ms
+
+ ---- 9.9.9.9 ping statistics ----
+4 packets transmitted, 4 received, 0% packet loss
+Average Jitter: 0.60 ms
+
+
+--- sudo ./traceroute_bin 9.9.9.9 -i ---
+
+===== Starting ICMP Traceroute to 9.9.9.9 =====
+ 1  172.20.64.1  0.37 ms (TTL Expired)
+ 2  192.168.1.1  4.68 ms (TTL Expired)
+ 3  10.240.8.32  11.58 ms (TTL Expired)
+TTL =  4 | Request timed out
+ 5  152.52.62.37  8.53 ms (TTL Expired)
+ 6  116.119.156.64  158.30 ms (TTL Expired)
+ 7  195.66.225.238  143.52 ms (TTL Expired)
+ 8  9.9.9.9  158.36 ms Destination Reached
+
+--- Traceroute Statistics ---
+8 packets sent, 7 packets received, 12.5% packet loss
+
+
+--- sudo ./traceroute_bin 9.9.9.9 -u ---
+
+===== Starting UDP Traceroute to 9.9.9.9 =====
+ 1 172.20.64.1 0.34 ms | TTL Expired
+ 2 192.168.1.1 3.60 ms | TTL Expired
+ 3 10.240.8.32 9.49 ms | TTL Expired
+TTL =  4 | Request timed out
+ 5 152.52.62.37 5.80 ms | TTL Expired
+ 6 116.119.68.55 138.18 ms | TTL Expired
+ 7 195.66.225.238 150.96 ms | TTL Expired
+TTL =  8 | Request timed out
+TTL =  9 | Request timed out
+TTL = 10 | Request timed out
+TTL = 11 | Request timed out
+TTL = 12 | Request timed out
+TTL = 13 | Request timed out
+TTL = 14 | Request timed out
+TTL = 15 | Request timed out
+TTL = 16 | Request timed out
+TTL = 17 | Request timed out
+TTL = 18 | Request timed out
+TTL = 19 | Request timed out
+TTL = 20 | Request timed out
+TTL = 21 | Request timed out
+TTL = 22 | Request timed out
+TTL = 23 | Request timed out
+TTL = 24 | Request timed out
+TTL = 25 | Request timed out
+TTL = 26 | Request timed out
+TTL = 27 | Request timed out
+TTL = 28 | Request timed out
+TTL = 29 | Request timed out
+TTL = 30 | Request timed out
+
+--- Traceroute Statistics ---
+30 packets sent, 6 packets received, 80.0% packet loss
+
+
+--- sudo ./bandwidth_bin 9.9.9.9 ---
+Packet-pair bandwidth experiment
+Destination: 9.9.9.9
+ICMP payload: 1000 bytes; 10 pairs
+
+Pair  1: sending sequences 1 and 2...
+  Reply gap: 0.000005365 seconds; rough rate: 1503.075 Mbps
+Pair  2: sending sequences 3 and 4...
+  Reply gap: 0.000008512 seconds; rough rate: 947.368 Mbps
+Pair  3: sending sequences 5 and 6...
+  Reply gap: 0.000005185 seconds; rough rate: 1555.256 Mbps
+Pair  4: sending sequences 7 and 8...
+  Reply gap: 0.000008611 seconds; rough rate: 936.477 Mbps
+Pair  5: sending sequences 9 and 10...
+  Reply gap: 0.000005942 seconds; rough rate: 1357.119 Mbps
+Pair  6: sending sequences 11 and 12...
+  Reply gap: 0.000016618 seconds; rough rate: 485.257 Mbps
+Pair  7: sending sequences 13 and 14...
+  Reply gap: 0.000006475 seconds; rough rate: 1245.405 Mbps
+Pair  8: sending sequences 15 and 16...
+  Reply gap: 0.000012182 seconds; rough rate: 661.960 Mbps
+Pair  9: sending sequences 17 and 18...
+  Reply gap: 0.000006032 seconds; rough rate: 1336.870 Mbps
+Pair 10: sending sequences 19 and 20...
+  Reply gap: 0.000005356 seconds; rough rate: 1505.601 Mbps
+
+========== SUMMARY ==========
+Valid pairs: 10 / 10
+Mean reply-gap rate:   1153.439 Mbps
+Median reply-gap rate: 1291.138 Mbps
+Measurement: approximate ICMP reply-gap estimate.
+It is not a direct measurement of one-way link capacity.
+==============================
+
+
+--- sudo ./bufferbloat_bin 9.9.9.9 ---
+
+================ [1] RUPEN'S ORIGINAL PING (ping.c) ================
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf1fd
+Packet successfully fires , 8 bytes sent to 9.9.9.9
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 9.9.9.9: bytes= 28 icmp_seq=1 RTT= 157.67 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf1fc
+Packet successfully fires , 8 bytes sent to 9.9.9.9
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 9.9.9.9: bytes= 28 icmp_seq=2 RTT= 157.88 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf1fb
+Packet successfully fires , 8 bytes sent to 9.9.9.9
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 9.9.9.9: bytes= 28 icmp_seq=3 RTT= 160.13 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf1fa
+Packet successfully fires , 8 bytes sent to 9.9.9.9
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 9.9.9.9: bytes= 28 icmp_seq=4 RTT= 159.63 ms
+
+ ---- 9.9.9.9 ping statistics ----
+4 packets transmitted, 4 received, 0% packet loss
+Average Jitter: 0.99 ms
+
+================ [2] RUPEN'S UPDATED PING (updated_ping.c) ================
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf1fd
+Packet successfully fires , 8 bytes sent to 9.9.9.9
+TTL = 1 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 172.20.64.1: bytes=56 icmp_seq=1 RTT=0.50 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf1fc
+Packet successfully fires , 8 bytes sent to 9.9.9.9
+TTL = 2 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 192.168.1.1: bytes=56 icmp_seq=2 RTT=3.40 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf1fb
+Packet successfully fires , 8 bytes sent to 9.9.9.9
+TTL = 3 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 10.240.8.32: bytes=56 icmp_seq=3 RTT=6.20 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf1fa
+Packet successfully fires , 8 bytes sent to 9.9.9.9
+TTL = 4 | Listening to router response for 2 seconds...
+TTL = 4 | Request timed out / failed to receive.
+ICMP Echo Request packet constructed! Checksum generated: 0xf1f9
+Packet successfully fires , 8 bytes sent to 9.9.9.9
+TTL = 5 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 152.52.62.37: bytes=56 icmp_seq=5 RTT=7.33 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf1f8
+Packet successfully fires , 8 bytes sent to 9.9.9.9
+TTL = 6 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 116.119.156.64: bytes=56 icmp_seq=6 RTT=159.84 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf1f7
+Packet successfully fires , 8 bytes sent to 9.9.9.9
+TTL = 7 | Listening to router response for 2 seconds...
+Reply caught ! Received 96 bytes from the network.
+Reply from 195.66.225.238: bytes=96 icmp_seq=7 RTT=150.44 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf1f6
+Packet successfully fires , 8 bytes sent to 9.9.9.9
+TTL = 8 | Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+  Destination Reached !!! | Reply from 9.9.9.9: bytes= 28 icmp_seq=8 RTT= 166.82 ms
+
+ ---- 9.9.9.9 ping statistics ----
+8 packets transmitted, 7 received, 12% packet loss
+Average Jitter: 30.85 ms
+
+================ [3] SUBHASIS'S TRACEROUTE (traceroute.c) ================
+
+===== Starting ICMP Traceroute to 9.9.9.9 =====
+ 1  172.20.64.1  0.44 ms (TTL Expired)
+ 2  192.168.1.1  7.22 ms (TTL Expired)
+ 3  10.240.8.32  5.16 ms (TTL Expired)
+TTL =  4 | Request timed out
+ 5  152.52.62.37  5.64 ms (TTL Expired)
+ 6  116.119.156.64  167.81 ms (TTL Expired)
+ 7  195.66.225.238  155.62 ms (TTL Expired)
+ 8  9.9.9.9  166.91 ms Destination Reached
+
+--- Traceroute Statistics ---
+8 packets sent, 7 packets received, 12.5% packet loss
+
+===== Starting UDP Traceroute to 9.9.9.9 =====
+ 1 172.20.64.1 0.47 ms | TTL Expired
+ 2 192.168.1.1 4.75 ms | TTL Expired
+ 3 10.240.8.32 7.30 ms | TTL Expired
+TTL =  4 | Request timed out
+ 5 152.52.62.37 5.86 ms | TTL Expired
+ 6 116.119.68.57 154.60 ms | TTL Expired
+ 7 195.66.225.238 156.23 ms | TTL Expired
+TTL =  8 | Request timed out
+TTL =  9 | Request timed out
+TTL = 10 | Request timed out
+TTL = 11 | Request timed out
+TTL = 12 | Request timed out
+TTL = 13 | Request timed out
+TTL = 14 | Request timed out
+TTL = 15 | Request timed out
+TTL = 16 | Request timed out
+TTL = 17 | Request timed out
+TTL = 18 | Request timed out
+TTL = 19 | Request timed out
+TTL = 20 | Request timed out
+TTL = 21 | Request timed out
+TTL = 22 | Request timed out
+TTL = 23 | Request timed out
+TTL = 24 | Request timed out
+TTL = 25 | Request timed out
+TTL = 26 | Request timed out
+TTL = 27 | Request timed out
+TTL = 28 | Request timed out
+TTL = 29 | Request timed out
+TTL = 30 | Request timed out
+
+--- Traceroute Statistics ---
+30 packets sent, 6 packets received, 80.0% packet loss
+
+================ [4] DIPTALAL'S PATH MTU DISCOVERY (pmtu.c) ================
+PMTU discovery target: 9.9.9.9
+Search range: 576..1500 bytes (whole IPv4 packet, including headers).
+Testing  576-byte IPv4 packet (DF set, sequence 1)...
+  Matching Echo Reply received from 9.9.9.9.
+Confirmed working lower bound: 576 bytes.
+Testing 1500-byte IPv4 packet (DF set, sequence 2)...
+  Matching ICMP Fragmentation Needed received.
+  Router-reported next-hop MTU: 1480 bytes.
+Confirmed too-large upper bound: 1500 bytes.
+Testing 1038-byte IPv4 packet (DF set, sequence 3)...
+  Matching Echo Reply received from 9.9.9.9.
+  1038 bytes succeeded; updating lower bound.
+  Current bounds: working=1038, too-large=1500 bytes.
+Testing 1269-byte IPv4 packet (DF set, sequence 4)...
+  Matching Echo Reply received from 9.9.9.9.
+  1269 bytes succeeded; updating lower bound.
+  Current bounds: working=1269, too-large=1500 bytes.
+Testing 1384-byte IPv4 packet (DF set, sequence 5)...
+  Matching Echo Reply received from 9.9.9.9.
+  1384 bytes succeeded; updating lower bound.
+  Current bounds: working=1384, too-large=1500 bytes.
+Testing 1442-byte IPv4 packet (DF set, sequence 6)...
+  Matching Echo Reply received from 9.9.9.9.
+  1442 bytes succeeded; updating lower bound.
+  Current bounds: working=1442, too-large=1500 bytes.
+Testing 1471-byte IPv4 packet (DF set, sequence 7)...
+  Matching Echo Reply received from 9.9.9.9.
+  1471 bytes succeeded; updating lower bound.
+  Current bounds: working=1471, too-large=1500 bytes.
+Testing 1485-byte IPv4 packet (DF set, sequence 8)...
+  Local network stack reports packet too large.
+  1485 bytes required fragmentation; updating upper bound.
+  Current bounds: working=1471, too-large=1485 bytes.
+Testing 1478-byte IPv4 packet (DF set, sequence 9)...
+  Matching Echo Reply received from 9.9.9.9.
+  1478 bytes succeeded; updating lower bound.
+  Current bounds: working=1478, too-large=1485 bytes.
+Testing 1481-byte IPv4 packet (DF set, sequence 10)...
+  Local network stack reports packet too large.
+  1481 bytes required fragmentation; updating upper bound.
+  Current bounds: working=1478, too-large=1481 bytes.
+Testing 1479-byte IPv4 packet (DF set, sequence 11)...
+  Matching Echo Reply received from 9.9.9.9.
+  1479 bytes succeeded; updating lower bound.
+  Current bounds: working=1479, too-large=1481 bytes.
+Testing 1480-byte IPv4 packet (DF set, sequence 12)...
+  Matching Echo Reply received from 9.9.9.9.
+  1480 bytes succeeded; updating lower bound.
+  Current bounds: working=1480, too-large=1481 bytes.
+
+========== PMTU RESULT ==========
+Largest confirmed working packet: 1480 bytes
+Smallest confirmed too-large packet: 1481 bytes
+Estimated PMTU within the tested range: 1480 bytes
+=================================
+Note: ICMP filtering/rate limiting can affect active probing.
+
+================ [5] DIPTALAL'S BANDWIDTH ESTIMATION (bandwidth.c) ================
+Packet-pair bandwidth experiment
+Destination: 9.9.9.9
+ICMP payload: 1000 bytes; 10 pairs
+
+Pair  1: sending sequences 1 and 2...
+  Reply gap: 0.007528206 seconds; rough rate: 1.071 Mbps
+Pair  2: sending sequences 3 and 4...
+  Reply gap: 0.000006819 seconds; rough rate: 1182.578 Mbps
+Pair  3: sending sequences 5 and 6...
+  Reply gap: 0.000006131 seconds; rough rate: 1315.283 Mbps
+Pair  4: sending sequences 7 and 8...
+  Reply gap: 0.000006646 seconds; rough rate: 1213.361 Mbps
+Pair  5: sending sequences 9 and 10...
+  Reply gap: 0.000007960 seconds; rough rate: 1013.065 Mbps
+Pair  6: sending sequences 11 and 12...
+  Reply gap: 0.000006148 seconds; rough rate: 1311.646 Mbps
+Pair  7: sending sequences 13 and 14...
+  Reply gap: 0.000008902 seconds; rough rate: 905.864 Mbps
+Pair  8: sending sequences 15 and 16...
+  Reply gap: 0.000005650 seconds; rough rate: 1427.257 Mbps
+Pair  9: sending sequences 17 and 18...
+  Reply gap: 0.000005714 seconds; rough rate: 1411.271 Mbps
+Pair 10: sending sequences 19 and 20...
+  Reply gap: 0.000007670 seconds; rough rate: 1051.369 Mbps
+
+========== SUMMARY ==========
+Valid pairs: 10 / 10
+Mean reply-gap rate:   1083.277 Mbps
+Median reply-gap rate: 1197.970 Mbps
+Measurement: approximate ICMP reply-gap estimate.
+It is not a direct measurement of one-way link capacity.
+==============================
+
+================ [6] AMLAN'S BUFFERBLOAT ENGINE ================
+
+--- [IDLE_PHASE] Measuring RTT via Rupen's Ping Engine to 9.9.9.9 ---
+Reply from 9.9.9.9: icmp_seq=1 RTT=158.12 ms
+Reply from 9.9.9.9: icmp_seq=2 RTT=158.17 ms
+Reply from 9.9.9.9: icmp_seq=3 RTT=159.87 ms
+Reply from 9.9.9.9: icmp_seq=4 RTT=163.20 ms
+
+--- [LOADED_PHASE] Measuring RTT via Rupen's Ping Engine to 9.9.9.9 ---
+Reply from 9.9.9.9: icmp_seq=101 RTT=165.07 ms
+Reply from 9.9.9.9: icmp_seq=102 RTT=165.80 ms
+Reply from 9.9.9.9: icmp_seq=103 RTT=164.40 ms
+Reply from 9.9.9.9: icmp_seq=104 RTT=165.22 ms
+
+Bufferbloat Summary for 9.9.9.9 -> Idle RTT: 159.84 ms | Loaded RTT: 165.12 ms | Queuing Delay: 5.28 ms
+
+RESULT_CSV:9.9.9.9,159.84,165.12
+
+
+================ DESTINATION: 4.2.2.2 ================
+
+--- sudo ./ping_bin 4.2.2.2 ---
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf1f3
+Packet successfully fires , 8 bytes sent to 4.2.2.2
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 4.2.2.2: bytes= 28 icmp_seq=1 RTT= 60.34 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf1f2
+Packet successfully fires , 8 bytes sent to 4.2.2.2
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 4.2.2.2: bytes= 28 icmp_seq=2 RTT= 60.80 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf1f1
+Packet successfully fires , 8 bytes sent to 4.2.2.2
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 4.2.2.2: bytes= 28 icmp_seq=3 RTT= 60.46 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf1f0
+Packet successfully fires , 8 bytes sent to 4.2.2.2
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 4.2.2.2: bytes= 28 icmp_seq=4 RTT= 61.54 ms
+
+ ---- 4.2.2.2 ping statistics ----
+4 packets transmitted, 4 received, 0% packet loss
+Average Jitter: 0.63 ms
+
+
+--- sudo ./traceroute_bin 4.2.2.2 -i ---
+
+===== Starting ICMP Traceroute to 4.2.2.2 =====
+ 1  172.20.64.1  0.53 ms (TTL Expired)
+ 2  192.168.1.1  4.60 ms (TTL Expired)
+ 3  10.240.8.32  4.47 ms (TTL Expired)
+TTL =  4 | Request timed out
+ 5  152.52.62.37  7.04 ms (TTL Expired)
+ 6  116.119.161.97  95.15 ms (TTL Expired)
+ 7  4.68.71.181  2568.67 ms (TTL Expired)
+ 8  4.2.2.2  64.46 ms Destination Reached
+
+--- Traceroute Statistics ---
+8 packets sent, 7 packets received, 12.5% packet loss
+
+
+--- sudo ./traceroute_bin 4.2.2.2 -u ---
+
+===== Starting UDP Traceroute to 4.2.2.2 =====
+ 1 172.20.64.1 1.57 ms | TTL Expired
+ 2 192.168.1.1 5.13 ms | TTL Expired
+ 3 10.240.8.32 18.00 ms | TTL Expired
+TTL =  4 | Request timed out
+ 5 152.52.62.5 6.26 ms | TTL Expired
+ 6 116.119.42.21 76.06 ms | TTL Expired
+ 7 4.68.71.181 60.49 ms | TTL Expired
+TTL =  8 | Request timed out
+TTL =  9 | Request timed out
+TTL = 10 | Request timed out
+TTL = 11 | Request timed out
+TTL = 12 | Request timed out
+TTL = 13 | Request timed out
+TTL = 14 | Request timed out
+TTL = 15 | Request timed out
+TTL = 16 | Request timed out
+TTL = 17 | Request timed out
+TTL = 18 | Request timed out
+TTL = 19 | Request timed out
+TTL = 20 | Request timed out
+TTL = 21 | Request timed out
+TTL = 22 | Request timed out
+TTL = 23 | Request timed out
+TTL = 24 | Request timed out
+TTL = 25 | Request timed out
+TTL = 26 | Request timed out
+TTL = 27 | Request timed out
+TTL = 28 | Request timed out
+TTL = 29 | Request timed out
+TTL = 30 | Request timed out
+
+--- Traceroute Statistics ---
+30 packets sent, 6 packets received, 80.0% packet loss
+
+
+--- sudo ./bandwidth_bin 4.2.2.2 ---
+Packet-pair bandwidth experiment
+Destination: 4.2.2.2
+ICMP payload: 1000 bytes; 10 pairs
+
+Pair  1: sending sequences 1 and 2...
+  Reply gap: 0.000007338 seconds; rough rate: 1098.937 Mbps
+Pair  2: sending sequences 3 and 4...
+  Reply gap: 0.000007441 seconds; rough rate: 1083.725 Mbps
+Pair  3: sending sequences 5 and 6...
+  Reply gap: 0.000008059 seconds; rough rate: 1000.620 Mbps
+Pair  4: sending sequences 7 and 8...
+  Reply gap: 0.000008189 seconds; rough rate: 984.736 Mbps
+Pair  5: sending sequences 9 and 10...
+  Reply gap: 0.004780873 seconds; rough rate: 1.687 Mbps
+Pair  6: sending sequences 11 and 12...
+  Reply gap: 0.000007207 seconds; rough rate: 1118.912 Mbps
+Pair  7: sending sequences 13 and 14...
+  Reply gap: 0.000005130 seconds; rough rate: 1571.930 Mbps
+Pair  8: sending sequences 15 and 16...
+  Reply gap: 0.000007993 seconds; rough rate: 1008.883 Mbps
+Pair  9: sending sequences 17 and 18...
+  Timeout: received first only reply; pair skipped.
+Pair 10: sending sequences 19 and 20...
+  Reply gap: 0.000008574 seconds; rough rate: 940.518 Mbps
+
+========== SUMMARY ==========
+Valid pairs: 9 / 10
+Mean reply-gap rate:   978.883 Mbps
+Median reply-gap rate: 1008.883 Mbps
+Measurement: approximate ICMP reply-gap estimate.
+It is not a direct measurement of one-way link capacity.
+==============================
+
+
+--- sudo ./bufferbloat_bin 4.2.2.2 ---
+
+================ [1] RUPEN'S ORIGINAL PING (ping.c) ================
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf1e1
+Packet successfully fires , 8 bytes sent to 4.2.2.2
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 4.2.2.2: bytes= 28 icmp_seq=1 RTT= 58.82 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf1e0
+Packet successfully fires , 8 bytes sent to 4.2.2.2
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 4.2.2.2: bytes= 28 icmp_seq=2 RTT= 60.14 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf1df
+Packet successfully fires , 8 bytes sent to 4.2.2.2
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 4.2.2.2: bytes= 28 icmp_seq=3 RTT= 59.03 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf1de
+Packet successfully fires , 8 bytes sent to 4.2.2.2
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 4.2.2.2: bytes= 28 icmp_seq=4 RTT= 59.90 ms
+
+ ---- 4.2.2.2 ping statistics ----
+4 packets transmitted, 4 received, 0% packet loss
+Average Jitter: 1.10 ms
+
+================ [2] RUPEN'S UPDATED PING (updated_ping.c) ================
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf1e1
+Packet successfully fires , 8 bytes sent to 4.2.2.2
+TTL = 1 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 172.20.64.1: bytes=56 icmp_seq=1 RTT=0.56 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf1e0
+Packet successfully fires , 8 bytes sent to 4.2.2.2
+TTL = 2 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 192.168.1.1: bytes=56 icmp_seq=2 RTT=4.51 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf1df
+Packet successfully fires , 8 bytes sent to 4.2.2.2
+TTL = 3 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 10.240.8.32: bytes=56 icmp_seq=3 RTT=6.79 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf1de
+Packet successfully fires , 8 bytes sent to 4.2.2.2
+TTL = 4 | Listening to router response for 2 seconds...
+TTL = 4 | Request timed out / failed to receive.
+ICMP Echo Request packet constructed! Checksum generated: 0xf1dd
+Packet successfully fires , 8 bytes sent to 4.2.2.2
+TTL = 5 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 152.52.62.37: bytes=56 icmp_seq=5 RTT=5.91 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf1dc
+Packet successfully fires , 8 bytes sent to 4.2.2.2
+TTL = 6 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 116.119.161.97: bytes=56 icmp_seq=6 RTT=68.96 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf1db
+Packet successfully fires , 8 bytes sent to 4.2.2.2
+TTL = 7 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 4.68.71.181: bytes=56 icmp_seq=7 RTT=67.20 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf1da
+Packet successfully fires , 8 bytes sent to 4.2.2.2
+TTL = 8 | Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+  Destination Reached !!! | Reply from 4.2.2.2: bytes= 28 icmp_seq=8 RTT= 60.55 ms
+
+ ---- 4.2.2.2 ping statistics ----
+8 packets transmitted, 7 received, 12% packet loss
+Average Jitter: 13.10 ms
+
+================ [3] SUBHASIS'S TRACEROUTE (traceroute.c) ================
+
+===== Starting ICMP Traceroute to 4.2.2.2 =====
+ 1  172.20.64.1  0.48 ms (TTL Expired)
+ 2  192.168.1.1  4.49 ms (TTL Expired)
+ 3  10.240.8.32  6.57 ms (TTL Expired)
+TTL =  4 | Request timed out
+ 5  152.52.62.37  6.18 ms (TTL Expired)
+ 6  116.119.161.97  69.66 ms (TTL Expired)
+ 7  4.68.71.181  67.09 ms (TTL Expired)
+ 8  4.2.2.2  60.42 ms Destination Reached
+
+--- Traceroute Statistics ---
+8 packets sent, 7 packets received, 12.5% packet loss
+
+===== Starting UDP Traceroute to 4.2.2.2 =====
+ 1 172.20.64.1 0.68 ms | TTL Expired
+ 2 192.168.1.1 5.32 ms | TTL Expired
+ 3 10.240.8.32 14.77 ms | TTL Expired
+TTL =  4 | Request timed out
+ 5 152.52.62.37 6.88 ms | TTL Expired
+ 6 116.119.164.255 59.54 ms | TTL Expired
+ 7 4.68.71.181 65.52 ms | TTL Expired
+TTL =  8 | Request timed out
+TTL =  9 | Request timed out
+TTL = 10 | Request timed out
+TTL = 11 | Request timed out
+TTL = 12 | Request timed out
+TTL = 13 | Request timed out
+TTL = 14 | Request timed out
+TTL = 15 | Request timed out
+TTL = 16 | Request timed out
+TTL = 17 | Request timed out
+TTL = 18 | Request timed out
+TTL = 19 | Request timed out
+TTL = 20 | Request timed out
+TTL = 21 | Request timed out
+TTL = 22 | Request timed out
+TTL = 23 | Request timed out
+TTL = 24 | Request timed out
+TTL = 25 | Request timed out
+TTL = 26 | Request timed out
+TTL = 27 | Request timed out
+TTL = 28 | Request timed out
+TTL = 29 | Request timed out
+TTL = 30 | Request timed out
+
+--- Traceroute Statistics ---
+30 packets sent, 6 packets received, 80.0% packet loss
+
+================ [4] DIPTALAL'S PATH MTU DISCOVERY (pmtu.c) ================
+PMTU discovery target: 4.2.2.2
+Search range: 576..1500 bytes (whole IPv4 packet, including headers).
+Testing  576-byte IPv4 packet (DF set, sequence 1)...
+  Matching Echo Reply received from 4.2.2.2.
+Confirmed working lower bound: 576 bytes.
+Testing 1500-byte IPv4 packet (DF set, sequence 2)...
+  Matching ICMP Fragmentation Needed received.
+  Router-reported next-hop MTU: 1480 bytes.
+Confirmed too-large upper bound: 1500 bytes.
+Testing 1038-byte IPv4 packet (DF set, sequence 3)...
+  Matching Echo Reply received from 4.2.2.2.
+  1038 bytes succeeded; updating lower bound.
+  Current bounds: working=1038, too-large=1500 bytes.
+Testing 1269-byte IPv4 packet (DF set, sequence 4)...
+  Matching Echo Reply received from 4.2.2.2.
+  1269 bytes succeeded; updating lower bound.
+  Current bounds: working=1269, too-large=1500 bytes.
+Testing 1384-byte IPv4 packet (DF set, sequence 5)...
+  Matching Echo Reply received from 4.2.2.2.
+  1384 bytes succeeded; updating lower bound.
+  Current bounds: working=1384, too-large=1500 bytes.
+Testing 1442-byte IPv4 packet (DF set, sequence 6)...
+  Matching Echo Reply received from 4.2.2.2.
+  1442 bytes succeeded; updating lower bound.
+  Current bounds: working=1442, too-large=1500 bytes.
+Testing 1471-byte IPv4 packet (DF set, sequence 7)...
+  Matching Echo Reply received from 4.2.2.2.
+  1471 bytes succeeded; updating lower bound.
+  Current bounds: working=1471, too-large=1500 bytes.
+Testing 1485-byte IPv4 packet (DF set, sequence 8)...
+  Local network stack reports packet too large.
+  1485 bytes required fragmentation; updating upper bound.
+  Current bounds: working=1471, too-large=1485 bytes.
+Testing 1478-byte IPv4 packet (DF set, sequence 9)...
+  Matching Echo Reply received from 4.2.2.2.
+  1478 bytes succeeded; updating lower bound.
+  Current bounds: working=1478, too-large=1485 bytes.
+Testing 1481-byte IPv4 packet (DF set, sequence 10)...
+  Local network stack reports packet too large.
+  1481 bytes required fragmentation; updating upper bound.
+  Current bounds: working=1478, too-large=1481 bytes.
+Testing 1479-byte IPv4 packet (DF set, sequence 11)...
+  Matching Echo Reply received from 4.2.2.2.
+  1479 bytes succeeded; updating lower bound.
+  Current bounds: working=1479, too-large=1481 bytes.
+Testing 1480-byte IPv4 packet (DF set, sequence 12)...
+  Matching Echo Reply received from 4.2.2.2.
+  1480 bytes succeeded; updating lower bound.
+  Current bounds: working=1480, too-large=1481 bytes.
+
+========== PMTU RESULT ==========
+Largest confirmed working packet: 1480 bytes
+Smallest confirmed too-large packet: 1481 bytes
+Estimated PMTU within the tested range: 1480 bytes
+=================================
+Note: ICMP filtering/rate limiting can affect active probing.
+
+================ [5] DIPTALAL'S BANDWIDTH ESTIMATION (bandwidth.c) ================
+Packet-pair bandwidth experiment
+Destination: 4.2.2.2
+ICMP payload: 1000 bytes; 10 pairs
+
+Pair  1: sending sequences 1 and 2...
+  Reply gap: 0.000005655 seconds; rough rate: 1425.995 Mbps
+Pair  2: sending sequences 3 and 4...
+  Reply gap: 0.003454121 seconds; rough rate: 2.335 Mbps
+Pair  3: sending sequences 5 and 6...
+  Reply gap: 0.000005087 seconds; rough rate: 1585.217 Mbps
+Pair  4: sending sequences 7 and 8...
+  Reply gap: 0.004506246 seconds; rough rate: 1.790 Mbps
+Pair  5: sending sequences 9 and 10...
+  Reply gap: 0.000006186 seconds; rough rate: 1303.589 Mbps
+Pair  6: sending sequences 11 and 12...
+  Timeout: received no reply; pair skipped.
+Pair  7: sending sequences 13 and 14...
+  Reply gap: 0.000005348 seconds; rough rate: 1507.853 Mbps
+Pair  8: sending sequences 15 and 16...
+  Reply gap: 0.000005441 seconds; rough rate: 1482.080 Mbps
+Pair  9: sending sequences 17 and 18...
+  Reply gap: 0.000005628 seconds; rough rate: 1432.836 Mbps
+Pair 10: sending sequences 19 and 20...
+  Reply gap: 0.000005805 seconds; rough rate: 1389.147 Mbps
+
+========== SUMMARY ==========
+Valid pairs: 9 / 10
+Mean reply-gap rate:   1125.649 Mbps
+Median reply-gap rate: 1425.995 Mbps
+Measurement: approximate ICMP reply-gap estimate.
+It is not a direct measurement of one-way link capacity.
+==============================
+
+================ [6] AMLAN'S BUFFERBLOAT ENGINE ================
+
+--- [IDLE_PHASE] Measuring RTT via Rupen's Ping Engine to 4.2.2.2 ---
+Reply from 4.2.2.2: icmp_seq=1 RTT=61.87 ms
+Reply from 4.2.2.2: icmp_seq=2 RTT=60.22 ms
+Reply from 4.2.2.2: icmp_seq=3 RTT=59.44 ms
+Reply from 4.2.2.2: icmp_seq=4 RTT=64.60 ms
+
+--- [LOADED_PHASE] Measuring RTT via Rupen's Ping Engine to 4.2.2.2 ---
+Reply from 4.2.2.2: icmp_seq=101 RTT=58.30 ms
+Reply from 4.2.2.2: icmp_seq=102 RTT=59.56 ms
+Reply from 4.2.2.2: icmp_seq=103 RTT=61.02 ms
+Reply from 4.2.2.2: icmp_seq=104 RTT=59.49 ms
+
+Bufferbloat Summary for 4.2.2.2 -> Idle RTT: 61.53 ms | Loaded RTT: 59.59 ms | Queuing Delay: 0.00 ms
+
+RESULT_CSV:4.2.2.2,61.53,59.59
+
+
+================ DESTINATION: 80.80.80.80 ================
+
+--- sudo ./ping_bin 80.80.80.80 ---
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf1d9
+Packet successfully fires , 8 bytes sent to 80.80.80.80
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 80.80.80.80: bytes= 28 icmp_seq=1 RTT= 165.21 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf1d8
+Packet successfully fires , 8 bytes sent to 80.80.80.80
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 80.80.80.80: bytes= 28 icmp_seq=2 RTT= 164.42 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf1d7
+Packet successfully fires , 8 bytes sent to 80.80.80.80
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 80.80.80.80: bytes= 28 icmp_seq=3 RTT= 170.32 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf1d6
+Packet successfully fires , 8 bytes sent to 80.80.80.80
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 80.80.80.80: bytes= 28 icmp_seq=4 RTT= 166.33 ms
+
+ ---- 80.80.80.80 ping statistics ----
+4 packets transmitted, 4 received, 0% packet loss
+Average Jitter: 3.56 ms
+
+
+--- sudo ./traceroute_bin 80.80.80.80 -i ---
+
+===== Starting ICMP Traceroute to 80.80.80.80 =====
+ 1  172.20.64.1  0.31 ms (TTL Expired)
+ 2  192.168.1.1  4.27 ms (TTL Expired)
+ 3  10.240.8.32  6.45 ms (TTL Expired)
+TTL =  4 | Request timed out
+ 5  152.52.62.37  8.19 ms (TTL Expired)
+ 6  116.119.161.55  70.72 ms (TTL Expired)
+ 7  27.111.228.196  75.36 ms (TTL Expired)
+ 8  58.138.81.205  111.22 ms (TTL Expired)
+TTL =  9 | Request timed out
+TTL = 10 | Request timed out
+TTL = 11 | Request timed out
+12  210.130.153.158  162.02 ms (TTL Expired)
+13  219.99.128.190  156.00 ms (TTL Expired)
+14  211.132.1.110  167.68 ms (TTL Expired)
+15  80.80.80.80  164.43 ms Destination Reached
+
+--- Traceroute Statistics ---
+15 packets sent, 11 packets received, 26.7% packet loss
+
+
+--- sudo ./traceroute_bin 80.80.80.80 -u ---
+
+===== Starting UDP Traceroute to 80.80.80.80 =====
+ 1 172.20.64.1 0.41 ms | TTL Expired
+ 2 192.168.1.1 5.77 ms | TTL Expired
+ 3 10.240.8.32 5.71 ms | TTL Expired
+TTL =  4 | Request timed out
+ 5 152.52.62.5 6.63 ms | TTL Expired
+ 6 116.119.42.9 53.97 ms | TTL Expired
+ 7 27.111.228.196 64.64 ms | TTL Expired
+ 8 58.138.81.205 103.78 ms | TTL Expired
+TTL =  9 | Request timed out
+TTL = 10 | Request timed out
+TTL = 11 | Request timed out
+12 210.130.153.162 167.36 ms | TTL Expired
+13 219.99.128.190 148.54 ms | TTL Expired
+14 211.132.1.110 171.72 ms | TTL Expired
+15 80.80.80.80 151.54 ms | Destination Reached (Port Unreachable)
+
+--- Traceroute Statistics ---
+15 packets sent, 11 packets received, 26.7% packet loss
+
+
+--- sudo ./bandwidth_bin 80.80.80.80 ---
+Packet-pair bandwidth experiment
+Destination: 80.80.80.80
+ICMP payload: 1000 bytes; 10 pairs
+
+Pair  1: sending sequences 1 and 2...
+  Timeout: received second only reply; pair skipped.
+Pair  2: sending sequences 3 and 4...
+  Timeout: received no reply; pair skipped.
+Pair  3: sending sequences 5 and 6...
+  Timeout: received first only reply; pair skipped.
+Pair  4: sending sequences 7 and 8...
+  Reply gap: 0.000005087 seconds; rough rate: 1585.217 Mbps
+Pair  5: sending sequences 9 and 10...
+  Timeout: received second only reply; pair skipped.
+Pair  6: sending sequences 11 and 12...
+  Reply gap: 0.000017400 seconds; rough rate: 463.448 Mbps
+Pair  7: sending sequences 13 and 14...
+  Timeout: received second only reply; pair skipped.
+Pair  8: sending sequences 15 and 16...
+  Timeout: received first only reply; pair skipped.
+Pair  9: sending sequences 17 and 18...
+  Reply gap: 0.000007940 seconds; rough rate: 1015.617 Mbps
+Pair 10: sending sequences 19 and 20...
+  Reply gap: 0.000004758 seconds; rough rate: 1694.830 Mbps
+
+========== SUMMARY ==========
+Valid pairs: 4 / 10
+Mean reply-gap rate:   1189.778 Mbps
+Median reply-gap rate: 1300.417 Mbps
+Measurement: approximate ICMP reply-gap estimate.
+It is not a direct measurement of one-way link capacity.
+==============================
+
+
+--- sudo ./bufferbloat_bin 80.80.80.80 ---
+
+================ [1] RUPEN'S ORIGINAL PING (ping.c) ================
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf1cb
+Packet successfully fires , 8 bytes sent to 80.80.80.80
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 80.80.80.80: bytes= 28 icmp_seq=1 RTT= 165.15 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf1ca
+Packet successfully fires , 8 bytes sent to 80.80.80.80
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 80.80.80.80: bytes= 28 icmp_seq=2 RTT= 164.85 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf1c9
+Packet successfully fires , 8 bytes sent to 80.80.80.80
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 80.80.80.80: bytes= 28 icmp_seq=3 RTT= 164.27 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf1c8
+Packet successfully fires , 8 bytes sent to 80.80.80.80
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 80.80.80.80: bytes= 28 icmp_seq=4 RTT= 143.59 ms
+
+ ---- 80.80.80.80 ping statistics ----
+4 packets transmitted, 4 received, 0% packet loss
+Average Jitter: 7.19 ms
+
+================ [2] RUPEN'S UPDATED PING (updated_ping.c) ================
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf1cb
+Packet successfully fires , 8 bytes sent to 80.80.80.80
+TTL = 1 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 172.20.64.1: bytes=56 icmp_seq=1 RTT=0.78 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf1ca
+Packet successfully fires , 8 bytes sent to 80.80.80.80
+TTL = 2 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 192.168.1.1: bytes=56 icmp_seq=2 RTT=4.46 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf1c9
+Packet successfully fires , 8 bytes sent to 80.80.80.80
+TTL = 3 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 10.240.8.32: bytes=56 icmp_seq=3 RTT=5.91 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf1c8
+Packet successfully fires , 8 bytes sent to 80.80.80.80
+TTL = 4 | Listening to router response for 2 seconds...
+TTL = 4 | Request timed out / failed to receive.
+ICMP Echo Request packet constructed! Checksum generated: 0xf1c7
+Packet successfully fires , 8 bytes sent to 80.80.80.80
+TTL = 5 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 152.52.62.37: bytes=56 icmp_seq=5 RTT=12.14 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf1c6
+Packet successfully fires , 8 bytes sent to 80.80.80.80
+TTL = 6 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 116.119.161.55: bytes=56 icmp_seq=6 RTT=78.44 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf1c5
+Packet successfully fires , 8 bytes sent to 80.80.80.80
+TTL = 7 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 27.111.228.196: bytes=56 icmp_seq=7 RTT=190.99 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf1c4
+Packet successfully fires , 8 bytes sent to 80.80.80.80
+TTL = 8 | Listening to router response for 2 seconds...
+TTL = 8 | Request timed out / failed to receive.
+ICMP Echo Request packet constructed! Checksum generated: 0xf1c3
+Packet successfully fires , 8 bytes sent to 80.80.80.80
+TTL = 9 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 58.138.81.98: bytes=56 icmp_seq=9 RTT=140.06 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf1c2
+Packet successfully fires , 8 bytes sent to 80.80.80.80
+TTL = 10 | Listening to router response for 2 seconds...
+Reply caught ! Received 96 bytes from the network.
+Reply from 210.130.153.158: bytes=96 icmp_seq=10 RTT=140.30 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf1c1
+Packet successfully fires , 8 bytes sent to 80.80.80.80
+TTL = 11 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 219.99.128.190: bytes=56 icmp_seq=11 RTT=136.35 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf1c0
+Packet successfully fires , 8 bytes sent to 80.80.80.80
+TTL = 12 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 211.132.1.110: bytes=56 icmp_seq=12 RTT=150.58 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf1bf
+Packet successfully fires , 8 bytes sent to 80.80.80.80
+TTL = 13 | Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+  Destination Reached !!! | Reply from 80.80.80.80: bytes= 28 icmp_seq=13 RTT= 143.57 ms
+
+ ---- 80.80.80.80 ping statistics ----
+13 packets transmitted, 11 received, 15% packet loss
+Average Jitter: 26.66 ms
+
+================ [3] SUBHASIS'S TRACEROUTE (traceroute.c) ================
+
+===== Starting ICMP Traceroute to 80.80.80.80 =====
+ 1  172.20.64.1  0.32 ms (TTL Expired)
+ 2  192.168.1.1  5.53 ms (TTL Expired)
+ 3  10.240.8.32  6.69 ms (TTL Expired)
+TTL =  4 | Request timed out
+ 5  152.52.62.37  9.05 ms (TTL Expired)
+ 6  116.119.161.55  103.83 ms (TTL Expired)
+ 7  27.111.228.196  72.15 ms (TTL Expired)
+ 8  58.138.99.130  146.60 ms (TTL Expired)
+ 9  58.138.81.98  136.81 ms (TTL Expired)
+10  210.130.153.158  140.75 ms (TTL Expired)
+11  219.99.128.190  2548.19 ms (TTL Expired)
+12  211.132.1.110  145.19 ms (TTL Expired)
+13  80.80.80.80  143.27 ms Destination Reached
+
+--- Traceroute Statistics ---
+13 packets sent, 12 packets received, 7.7% packet loss
+
+===== Starting UDP Traceroute to 80.80.80.80 =====
+ 1 172.20.64.1 0.53 ms | TTL Expired
+ 2 192.168.1.1 3.32 ms | TTL Expired
+ 3 10.240.8.32 6.25 ms | TTL Expired
+TTL =  4 | Request timed out
+ 5 152.52.62.5 9.61 ms | TTL Expired
+ 6 116.119.164.32 57.02 ms | TTL Expired
+ 7 27.111.228.196 65.48 ms | TTL Expired
+TTL =  8 | Request timed out
+ 9 58.138.81.98 128.39 ms | TTL Expired
+10 210.130.153.162 129.67 ms | TTL Expired
+11 219.99.128.186 136.42 ms | TTL Expired
+12 211.132.1.110 146.64 ms | TTL Expired
+13 80.80.80.80 135.96 ms | Destination Reached (Port Unreachable)
+
+--- Traceroute Statistics ---
+13 packets sent, 11 packets received, 15.4% packet loss
+
+================ [4] DIPTALAL'S PATH MTU DISCOVERY (pmtu.c) ================
+PMTU discovery target: 80.80.80.80
+Search range: 576..1500 bytes (whole IPv4 packet, including headers).
+Testing  576-byte IPv4 packet (DF set, sequence 1)...
+  Matching Echo Reply received from 80.80.80.80.
+Confirmed working lower bound: 576 bytes.
+Testing 1500-byte IPv4 packet (DF set, sequence 2)...
+  Matching ICMP Fragmentation Needed received.
+  Router-reported next-hop MTU: 1480 bytes.
+Confirmed too-large upper bound: 1500 bytes.
+Testing 1038-byte IPv4 packet (DF set, sequence 3)...
+  Matching Echo Reply received from 80.80.80.80.
+  1038 bytes succeeded; updating lower bound.
+  Current bounds: working=1038, too-large=1500 bytes.
+Testing 1269-byte IPv4 packet (DF set, sequence 4)...
+  Matching Echo Reply received from 80.80.80.80.
+  1269 bytes succeeded; updating lower bound.
+  Current bounds: working=1269, too-large=1500 bytes.
+Testing 1384-byte IPv4 packet (DF set, sequence 5)...
+  Matching Echo Reply received from 80.80.80.80.
+  1384 bytes succeeded; updating lower bound.
+  Current bounds: working=1384, too-large=1500 bytes.
+Testing 1442-byte IPv4 packet (DF set, sequence 6)...
+  Matching Echo Reply received from 80.80.80.80.
+  1442 bytes succeeded; updating lower bound.
+  Current bounds: working=1442, too-large=1500 bytes.
+Testing 1471-byte IPv4 packet (DF set, sequence 7)...
+  Matching Echo Reply received from 80.80.80.80.
+  1471 bytes succeeded; updating lower bound.
+  Current bounds: working=1471, too-large=1500 bytes.
+Testing 1485-byte IPv4 packet (DF set, sequence 8)...
+  Local network stack reports packet too large.
+  1485 bytes required fragmentation; updating upper bound.
+  Current bounds: working=1471, too-large=1485 bytes.
+Testing 1478-byte IPv4 packet (DF set, sequence 9)...
+  No matching ICMP response within 2 seconds; result is inconclusive.
+  Retrying inconclusive 1478-byte probe...
+Testing 1478-byte IPv4 packet (DF set, sequence 10)...
+  No matching ICMP response within 2 seconds; result is inconclusive.
+
+PMTU search stopped: repeated timeouts at 1478 bytes.
+Largest confirmed working size: 1471 bytes.
+Previously confirmed too-large size: 1485 bytes.
+No exact PMTU is claimed because the probe was inconclusive.
+
+================ [5] DIPTALAL'S BANDWIDTH ESTIMATION (bandwidth.c) ================
+Packet-pair bandwidth experiment
+Destination: 80.80.80.80
+ICMP payload: 1000 bytes; 10 pairs
+
+Pair  1: sending sequences 1 and 2...
+  Timeout: received no reply; pair skipped.
+Pair  2: sending sequences 3 and 4...
+  Reply gap: 0.000011928 seconds; rough rate: 676.056 Mbps
+Pair  3: sending sequences 5 and 6...
+  Reply gap: 0.000007049 seconds; rough rate: 1143.992 Mbps
+Pair  4: sending sequences 7 and 8...
+  Reply gap: 0.000005308 seconds; rough rate: 1519.216 Mbps
+Pair  5: sending sequences 9 and 10...
+  Timeout: received first only reply; pair skipped.
+Pair  6: sending sequences 11 and 12...
+  Reply gap: 0.000015913 seconds; rough rate: 506.755 Mbps
+Pair  7: sending sequences 13 and 14...
+  Timeout: received second only reply; pair skipped.
+Pair  8: sending sequences 15 and 16...
+  Timeout: received second only reply; pair skipped.
+Pair  9: sending sequences 17 and 18...
+  Timeout: received second only reply; pair skipped.
+Pair 10: sending sequences 19 and 20...
+  Reply gap: 0.000005896 seconds; rough rate: 1367.707 Mbps
+
+========== SUMMARY ==========
+Valid pairs: 5 / 10
+Mean reply-gap rate:   1042.745 Mbps
+Median reply-gap rate: 1143.992 Mbps
+Measurement: approximate ICMP reply-gap estimate.
+It is not a direct measurement of one-way link capacity.
+==============================
+
+================ [6] AMLAN'S BUFFERBLOAT ENGINE ================
+
+--- [IDLE_PHASE] Measuring RTT via Rupen's Ping Engine to 80.80.80.80 ---
+Reply from 80.80.80.80: icmp_seq=1 RTT=143.91 ms
+Reply from 80.80.80.80: icmp_seq=2 RTT=142.90 ms
+Reply from 80.80.80.80: icmp_seq=3 RTT=143.79 ms
+Reply from 80.80.80.80: icmp_seq=4 RTT=143.72 ms
+
+--- [LOADED_PHASE] Measuring RTT via Rupen's Ping Engine to 80.80.80.80 ---
+Reply from 80.80.80.80: icmp_seq=101 RTT=142.37 ms
+Reply from 80.80.80.80: icmp_seq=102 RTT=143.31 ms
+Timeout waiting for icmp_seq=103 (elapsed 2222 ms)
+Reply from 80.80.80.80: icmp_seq=104 RTT=142.87 ms
+
+Bufferbloat Summary for 80.80.80.80 -> Idle RTT: 143.58 ms | Loaded RTT: 142.85 ms | Queuing Delay: 0.00 ms
+
+RESULT_CSV:80.80.80.80,143.58,142.85
+
+
+================ DESTINATION: 199.91.73.222 ================
+
+--- sudo ./ping_bin 199.91.73.222 ---
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf1c2
+Packet successfully fires , 8 bytes sent to 199.91.73.222
+Listening to router response for 2 seconds...
+Request timed out / failed to receive.
+ICMP Echo Request packet constructed! Checksum generated: 0xf1c1
+Packet successfully fires , 8 bytes sent to 199.91.73.222
+Listening to router response for 2 seconds...
+Request timed out / failed to receive.
+ICMP Echo Request packet constructed! Checksum generated: 0xf1c0
+Packet successfully fires , 8 bytes sent to 199.91.73.222
+Listening to router response for 2 seconds...
+Request timed out / failed to receive.
+ICMP Echo Request packet constructed! Checksum generated: 0xf1bf
+Packet successfully fires , 8 bytes sent to 199.91.73.222
+Listening to router response for 2 seconds...
+Request timed out / failed to receive.
+
+ ---- 199.91.73.222 ping statistics ----
+4 packets transmitted, 0 received, 100% packet loss
+Average Jitter: 0.00 ms
+
+
+--- sudo ./traceroute_bin 199.91.73.222 -i ---
+
+===== Starting ICMP Traceroute to 199.91.73.222 =====
+ 1  172.20.64.1  1.25 ms (TTL Expired)
+ 2  192.168.1.1  4.76 ms (TTL Expired)
+ 3  10.240.8.32  6.39 ms (TTL Expired)
+TTL =  4 | Request timed out
+ 5  152.52.62.5  15.16 ms (TTL Expired)
+ 6  116.119.164.46  68.65 ms (TTL Expired)
+ 7  182.79.223.57  55.74 ms (TTL Expired)
+ 8  162.128.6.32  58.84 ms (TTL Expired)
+ 9  162.128.6.185  71.45 ms (TTL Expired)
+10  162.128.6.193  85.15 ms (TTL Expired)
+TTL = 11 | Request timed out
+TTL = 12 | Request timed out
+TTL = 13 | Request timed out
+TTL = 14 | Request timed out
+TTL = 15 | Request timed out
+TTL = 16 | Request timed out
+TTL = 17 | Request timed out
+TTL = 18 | Request timed out
+TTL = 19 | Request timed out
+TTL = 20 | Request timed out
+TTL = 21 | Request timed out
+TTL = 22 | Request timed out
+TTL = 23 | Request timed out
+TTL = 24 | Request timed out
+TTL = 25 | Request timed out
+TTL = 26 | Request timed out
+TTL = 27 | Request timed out
+TTL = 28 | Request timed out
+TTL = 29 | Request timed out
+TTL = 30 | Request timed out
+
+--- Traceroute Statistics ---
+30 packets sent, 9 packets received, 70.0% packet loss
+
+
+--- sudo ./traceroute_bin 199.91.73.222 -u ---
+
+===== Starting UDP Traceroute to 199.91.73.222 =====
+ 1 172.20.64.1 0.42 ms | TTL Expired
+ 2 192.168.1.1 5.17 ms | TTL Expired
+ 3 10.240.8.32 5.75 ms | TTL Expired
+TTL =  4 | Request timed out
+ 5 152.52.62.5 13.51 ms | TTL Expired
+ 6 116.119.156.187 64.55 ms | TTL Expired
+ 7 182.79.223.57 58.47 ms | TTL Expired
+ 8 162.128.6.34 51.37 ms | TTL Expired
+ 9 162.128.0.189 99.86 ms | TTL Expired
+10 98.98.231.253 85.02 ms | TTL Expired
+11 129.227.39.137 69.31 ms | TTL Expired
+TTL = 12 | Request timed out
+TTL = 13 | Request timed out
+TTL = 14 | Request timed out
+TTL = 15 | Request timed out
+TTL = 16 | Request timed out
+TTL = 17 | Request timed out
+TTL = 18 | Request timed out
+TTL = 19 | Request timed out
+TTL = 20 | Request timed out
+TTL = 21 | Request timed out
+TTL = 22 | Request timed out
+TTL = 23 | Request timed out
+TTL = 24 | Request timed out
+TTL = 25 | Request timed out
+TTL = 26 | Request timed out
+TTL = 27 | Request timed out
+TTL = 28 | Request timed out
+TTL = 29 | Request timed out
+TTL = 30 | Request timed out
+
+--- Traceroute Statistics ---
+30 packets sent, 10 packets received, 66.7% packet loss
+
+
+--- sudo ./bandwidth_bin 199.91.73.222 ---
+Packet-pair bandwidth experiment
+Destination: 199.91.73.222
+ICMP payload: 1000 bytes; 10 pairs
+
+Pair  1: sending sequences 1 and 2...
+  Timeout: received no reply; pair skipped.
+Pair  2: sending sequences 3 and 4...
+  Timeout: received no reply; pair skipped.
+Pair  3: sending sequences 5 and 6...
+  Timeout: received no reply; pair skipped.
+Pair  4: sending sequences 7 and 8...
+  Timeout: received no reply; pair skipped.
+Pair  5: sending sequences 9 and 10...
+  Timeout: received no reply; pair skipped.
+Pair  6: sending sequences 11 and 12...
+  Timeout: received no reply; pair skipped.
+Pair  7: sending sequences 13 and 14...
+  Timeout: received no reply; pair skipped.
+Pair  8: sending sequences 15 and 16...
+  Timeout: received no reply; pair skipped.
+Pair  9: sending sequences 17 and 18...
+  Timeout: received no reply; pair skipped.
+Pair 10: sending sequences 19 and 20...
+  Timeout: received no reply; pair skipped.
+
+No valid pairs. No estimate available.
+
+
+--- TIMEOUT: sudo ./bufferbloat_bin 199.91.73.222 ---
+
+================ DESTINATION: 202.12.27.33 ================
+
+--- sudo ./ping_bin 202.12.27.33 ---
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf1ab
+Packet successfully fires , 8 bytes sent to 202.12.27.33
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 202.12.27.33: bytes= 28 icmp_seq=1 RTT= 145.98 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf1aa
+Packet successfully fires , 8 bytes sent to 202.12.27.33
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 202.12.27.33: bytes= 28 icmp_seq=2 RTT= 146.44 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf1a9
+Packet successfully fires , 8 bytes sent to 202.12.27.33
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 202.12.27.33: bytes= 28 icmp_seq=3 RTT= 146.69 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf1a8
+Packet successfully fires , 8 bytes sent to 202.12.27.33
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 202.12.27.33: bytes= 28 icmp_seq=4 RTT= 146.57 ms
+
+ ---- 202.12.27.33 ping statistics ----
+4 packets transmitted, 4 received, 0% packet loss
+Average Jitter: 0.27 ms
+
+
+--- sudo ./traceroute_bin 202.12.27.33 -i ---
+
+===== Starting ICMP Traceroute to 202.12.27.33 =====
+ 1  172.20.64.1  0.82 ms (TTL Expired)
+ 2  192.168.1.1  4.63 ms (TTL Expired)
+ 3  10.240.8.32  5.81 ms (TTL Expired)
+TTL =  4 | Request timed out
+ 5  152.52.62.5  6.48 ms (TTL Expired)
+ 6  116.119.68.55  135.55 ms (TTL Expired)
+TTL =  7 | Request timed out
+ 8  184.104.192.55  155.26 ms (TTL Expired)
+ 9  184.105.213.244  143.78 ms (TTL Expired)
+10  37.49.237.106  152.54 ms (TTL Expired)
+11  202.12.27.33  147.89 ms Destination Reached
+
+--- Traceroute Statistics ---
+11 packets sent, 9 packets received, 18.2% packet loss
+
+
+--- sudo ./traceroute_bin 202.12.27.33 -u ---
+
+===== Starting UDP Traceroute to 202.12.27.33 =====
+ 1 172.20.64.1 0.54 ms | TTL Expired
+ 2 192.168.1.1 4.80 ms | TTL Expired
+ 3 10.240.8.32 9.98 ms | TTL Expired
+TTL =  4 | Request timed out
+ 5 152.52.62.5 14.10 ms | TTL Expired
+ 6 116.119.68.57 148.74 ms | TTL Expired
+ 7 195.66.224.21 168.27 ms | TTL Expired
+ 8 184.104.192.55 169.83 ms | TTL Expired
+ 9 184.105.213.244 156.50 ms | TTL Expired
+10 37.49.237.106 163.64 ms | TTL Expired
+11 202.12.27.33 169.85 ms | Destination Reached (Port Unreachable)
+
+--- Traceroute Statistics ---
+11 packets sent, 10 packets received, 9.1% packet loss
+
+
+--- sudo ./bandwidth_bin 202.12.27.33 ---
+Packet-pair bandwidth experiment
+Destination: 202.12.27.33
+ICMP payload: 1000 bytes; 10 pairs
+
+Pair  1: sending sequences 1 and 2...
+  Reply gap: 0.000007068 seconds; rough rate: 1140.917 Mbps
+Pair  2: sending sequences 3 and 4...
+  Reply gap: 0.000012932 seconds; rough rate: 623.569 Mbps
+Pair  3: sending sequences 5 and 6...
+  Reply gap: 0.000012521 seconds; rough rate: 644.038 Mbps
+Pair  4: sending sequences 7 and 8...
+  Reply gap: 0.000008217 seconds; rough rate: 981.380 Mbps
+Pair  5: sending sequences 9 and 10...
+  Reply gap: 0.000005967 seconds; rough rate: 1351.433 Mbps
+Pair  6: sending sequences 11 and 12...
+  Reply gap: 0.000007946 seconds; rough rate: 1014.850 Mbps
+Pair  7: sending sequences 13 and 14...
+  Reply gap: 0.000007292 seconds; rough rate: 1105.869 Mbps
+Pair  8: sending sequences 15 and 16...
+  Reply gap: 0.000008161 seconds; rough rate: 988.114 Mbps
+Pair  9: sending sequences 17 and 18...
+  Reply gap: 0.000006807 seconds; rough rate: 1184.663 Mbps
+Pair 10: sending sequences 19 and 20...
+  Reply gap: 0.000012166 seconds; rough rate: 662.831 Mbps
+
+========== SUMMARY ==========
+Valid pairs: 10 / 10
+Mean reply-gap rate:   969.766 Mbps
+Median reply-gap rate: 1001.482 Mbps
+Measurement: approximate ICMP reply-gap estimate.
+It is not a direct measurement of one-way link capacity.
+==============================
+
+
+--- sudo ./bufferbloat_bin 202.12.27.33 ---
+
+================ [1] RUPEN'S ORIGINAL PING (ping.c) ================
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf19f
+Packet successfully fires , 8 bytes sent to 202.12.27.33
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 202.12.27.33: bytes= 28 icmp_seq=1 RTT= 149.65 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf19e
+Packet successfully fires , 8 bytes sent to 202.12.27.33
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 202.12.27.33: bytes= 28 icmp_seq=2 RTT= 148.26 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf19d
+Packet successfully fires , 8 bytes sent to 202.12.27.33
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 202.12.27.33: bytes= 28 icmp_seq=3 RTT= 148.39 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf19c
+Packet successfully fires , 8 bytes sent to 202.12.27.33
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 202.12.27.33: bytes= 28 icmp_seq=4 RTT= 147.40 ms
+
+ ---- 202.12.27.33 ping statistics ----
+4 packets transmitted, 4 received, 0% packet loss
+Average Jitter: 0.83 ms
+
+================ [2] RUPEN'S UPDATED PING (updated_ping.c) ================
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf19f
+Packet successfully fires , 8 bytes sent to 202.12.27.33
+TTL = 1 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 172.20.64.1: bytes=56 icmp_seq=1 RTT=0.56 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf19e
+Packet successfully fires , 8 bytes sent to 202.12.27.33
+TTL = 2 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 192.168.1.1: bytes=56 icmp_seq=2 RTT=4.68 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf19d
+Packet successfully fires , 8 bytes sent to 202.12.27.33
+TTL = 3 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 10.240.8.32: bytes=56 icmp_seq=3 RTT=6.09 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf19c
+Packet successfully fires , 8 bytes sent to 202.12.27.33
+TTL = 4 | Listening to router response for 2 seconds...
+TTL = 4 | Request timed out / failed to receive.
+ICMP Echo Request packet constructed! Checksum generated: 0xf19b
+Packet successfully fires , 8 bytes sent to 202.12.27.33
+TTL = 5 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 152.52.62.5: bytes=56 icmp_seq=5 RTT=6.39 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf19a
+Packet successfully fires , 8 bytes sent to 202.12.27.33
+TTL = 6 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 116.119.68.55: bytes=56 icmp_seq=6 RTT=138.52 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf199
+Packet successfully fires , 8 bytes sent to 202.12.27.33
+TTL = 7 | Listening to router response for 2 seconds...
+Reply caught ! Received 96 bytes from the network.
+Reply from 195.66.224.21: bytes=96 icmp_seq=7 RTT=153.04 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf198
+Packet successfully fires , 8 bytes sent to 202.12.27.33
+TTL = 8 | Listening to router response for 2 seconds...
+Reply caught ! Received 168 bytes from the network.
+Reply from 184.104.192.55: bytes=168 icmp_seq=8 RTT=152.37 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf197
+Packet successfully fires , 8 bytes sent to 202.12.27.33
+TTL = 9 | Listening to router response for 2 seconds...
+TTL = 9 | Request timed out / failed to receive.
+ICMP Echo Request packet constructed! Checksum generated: 0xf196
+Packet successfully fires , 8 bytes sent to 202.12.27.33
+TTL = 10 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 37.49.237.106: bytes=56 icmp_seq=10 RTT=151.69 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf195
+Packet successfully fires , 8 bytes sent to 202.12.27.33
+TTL = 11 | Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+  Destination Reached !!! | Reply from 202.12.27.33: bytes= 28 icmp_seq=11 RTT= 147.81 ms
+
+ ---- 202.12.27.33 ping statistics ----
+11 packets transmitted, 9 received, 18% packet loss
+Average Jitter: 19.71 ms
+
+================ [3] SUBHASIS'S TRACEROUTE (traceroute.c) ================
+
+===== Starting ICMP Traceroute to 202.12.27.33 =====
+ 1  172.20.64.1  0.42 ms (TTL Expired)
+ 2  192.168.1.1  4.87 ms (TTL Expired)
+ 3  10.240.8.32  11.68 ms (TTL Expired)
+TTL =  4 | Request timed out
+ 5  152.52.62.5  6.37 ms (TTL Expired)
+ 6  116.119.68.55  134.79 ms (TTL Expired)
+ 7  195.66.224.21  153.69 ms (TTL Expired)
+ 8  184.104.192.55  154.27 ms (TTL Expired)
+ 9  184.105.213.244  143.98 ms (TTL Expired)
+10  37.49.237.106  151.71 ms (TTL Expired)
+11  202.12.27.33  151.39 ms Destination Reached
+
+--- Traceroute Statistics ---
+11 packets sent, 10 packets received, 9.1% packet loss
+
+===== Starting UDP Traceroute to 202.12.27.33 =====
+ 1 172.20.64.1 0.38 ms | TTL Expired
+ 2 192.168.1.1 5.20 ms | TTL Expired
+ 3 10.240.8.32 29.60 ms | TTL Expired
+TTL =  4 | Request timed out
+ 5 152.52.62.5 8.01 ms | TTL Expired
+ 6 182.79.237.204 164.80 ms | TTL Expired
+TTL =  7 | Request timed out
+ 8 184.104.192.55 164.26 ms | TTL Expired
+ 9 184.105.213.244 171.73 ms | TTL Expired
+10 37.49.237.106 165.12 ms | TTL Expired
+11 202.12.27.33 149.56 ms | Destination Reached (Port Unreachable)
+
+--- Traceroute Statistics ---
+11 packets sent, 9 packets received, 18.2% packet loss
+
+================ [4] DIPTALAL'S PATH MTU DISCOVERY (pmtu.c) ================
+PMTU discovery target: 202.12.27.33
+Search range: 576..1500 bytes (whole IPv4 packet, including headers).
+Testing  576-byte IPv4 packet (DF set, sequence 1)...
+  Matching Echo Reply received from 202.12.27.33.
+Confirmed working lower bound: 576 bytes.
+Testing 1500-byte IPv4 packet (DF set, sequence 2)...
+  Matching ICMP Fragmentation Needed received.
+  Router-reported next-hop MTU: 1480 bytes.
+Confirmed too-large upper bound: 1500 bytes.
+Testing 1038-byte IPv4 packet (DF set, sequence 3)...
+  Matching Echo Reply received from 202.12.27.33.
+  1038 bytes succeeded; updating lower bound.
+  Current bounds: working=1038, too-large=1500 bytes.
+Testing 1269-byte IPv4 packet (DF set, sequence 4)...
+  Matching Echo Reply received from 202.12.27.33.
+  1269 bytes succeeded; updating lower bound.
+  Current bounds: working=1269, too-large=1500 bytes.
+Testing 1384-byte IPv4 packet (DF set, sequence 5)...
+  Matching Echo Reply received from 202.12.27.33.
+  1384 bytes succeeded; updating lower bound.
+  Current bounds: working=1384, too-large=1500 bytes.
+Testing 1442-byte IPv4 packet (DF set, sequence 6)...
+  Matching Echo Reply received from 202.12.27.33.
+  1442 bytes succeeded; updating lower bound.
+  Current bounds: working=1442, too-large=1500 bytes.
+Testing 1471-byte IPv4 packet (DF set, sequence 7)...
+  Matching Echo Reply received from 202.12.27.33.
+  1471 bytes succeeded; updating lower bound.
+  Current bounds: working=1471, too-large=1500 bytes.
+Testing 1485-byte IPv4 packet (DF set, sequence 8)...
+  Local network stack reports packet too large.
+  1485 bytes required fragmentation; updating upper bound.
+  Current bounds: working=1471, too-large=1485 bytes.
+Testing 1478-byte IPv4 packet (DF set, sequence 9)...
+  Matching Echo Reply received from 202.12.27.33.
+  1478 bytes succeeded; updating lower bound.
+  Current bounds: working=1478, too-large=1485 bytes.
+Testing 1481-byte IPv4 packet (DF set, sequence 10)...
+  Local network stack reports packet too large.
+  1481 bytes required fragmentation; updating upper bound.
+  Current bounds: working=1478, too-large=1481 bytes.
+Testing 1479-byte IPv4 packet (DF set, sequence 11)...
+  Matching Echo Reply received from 202.12.27.33.
+  1479 bytes succeeded; updating lower bound.
+  Current bounds: working=1479, too-large=1481 bytes.
+Testing 1480-byte IPv4 packet (DF set, sequence 12)...
+  Matching Echo Reply received from 202.12.27.33.
+  1480 bytes succeeded; updating lower bound.
+  Current bounds: working=1480, too-large=1481 bytes.
+
+========== PMTU RESULT ==========
+Largest confirmed working packet: 1480 bytes
+Smallest confirmed too-large packet: 1481 bytes
+Estimated PMTU within the tested range: 1480 bytes
+=================================
+Note: ICMP filtering/rate limiting can affect active probing.
+
+================ [5] DIPTALAL'S BANDWIDTH ESTIMATION (bandwidth.c) ================
+Packet-pair bandwidth experiment
+Destination: 202.12.27.33
+ICMP payload: 1000 bytes; 10 pairs
+
+Pair  1: sending sequences 1 and 2...
+  Reply gap: 0.000009380 seconds; rough rate: 859.701 Mbps
+Pair  2: sending sequences 3 and 4...
+  Reply gap: 0.000008546 seconds; rough rate: 943.599 Mbps
+Pair  3: sending sequences 5 and 6...
+  Reply gap: 0.000006278 seconds; rough rate: 1284.486 Mbps
+Pair  4: sending sequences 7 and 8...
+  Reply gap: 0.000008976 seconds; rough rate: 898.396 Mbps
+Pair  5: sending sequences 9 and 10...
+  Reply gap: 0.000007533 seconds; rough rate: 1070.490 Mbps
+Pair  6: sending sequences 11 and 12...
+  Reply gap: 0.000008555 seconds; rough rate: 942.607 Mbps
+Pair  7: sending sequences 13 and 14...
+  Reply gap: 0.000009076 seconds; rough rate: 888.497 Mbps
+Pair  8: sending sequences 15 and 16...
+  Reply gap: 0.000007327 seconds; rough rate: 1100.587 Mbps
+Pair  9: sending sequences 17 and 18...
+  Reply gap: 0.000009656 seconds; rough rate: 835.128 Mbps
+Pair 10: sending sequences 19 and 20...
+  Reply gap: 0.000076074 seconds; rough rate: 106.002 Mbps
+
+========== SUMMARY ==========
+Valid pairs: 10 / 10
+Mean reply-gap rate:   892.949 Mbps
+Median reply-gap rate: 920.501 Mbps
+Measurement: approximate ICMP reply-gap estimate.
+It is not a direct measurement of one-way link capacity.
+==============================
+
+================ [6] AMLAN'S BUFFERBLOAT ENGINE ================
+
+--- [IDLE_PHASE] Measuring RTT via Rupen's Ping Engine to 202.12.27.33 ---
+Reply from 202.12.27.33: icmp_seq=1 RTT=148.83 ms
+Reply from 202.12.27.33: icmp_seq=2 RTT=148.76 ms
+Reply from 202.12.27.33: icmp_seq=3 RTT=148.37 ms
+Reply from 202.12.27.33: icmp_seq=4 RTT=147.96 ms
+
+--- [LOADED_PHASE] Measuring RTT via Rupen's Ping Engine to 202.12.27.33 ---
+Reply from 202.12.27.33: icmp_seq=101 RTT=147.61 ms
+Reply from 202.12.27.33: icmp_seq=102 RTT=147.66 ms
+Reply from 202.12.27.33: icmp_seq=103 RTT=147.29 ms
+Reply from 202.12.27.33: icmp_seq=104 RTT=147.42 ms
+
+Bufferbloat Summary for 202.12.27.33 -> Idle RTT: 148.48 ms | Loaded RTT: 147.50 ms | Queuing Delay: 0.00 ms
+
+RESULT_CSV:202.12.27.33,148.48,147.50
+
+
+================ DESTINATION: 193.0.14.129 ================
+
+--- sudo ./ping_bin 193.0.14.129 ---
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf197
+Packet successfully fires , 8 bytes sent to 193.0.14.129
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 193.0.14.129: bytes= 28 icmp_seq=1 RTT= 34.26 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf196
+Packet successfully fires , 8 bytes sent to 193.0.14.129
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 193.0.14.129: bytes= 28 icmp_seq=2 RTT= 36.56 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf195
+Packet successfully fires , 8 bytes sent to 193.0.14.129
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 193.0.14.129: bytes= 28 icmp_seq=3 RTT= 35.55 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf194
+Packet successfully fires , 8 bytes sent to 193.0.14.129
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 193.0.14.129: bytes= 28 icmp_seq=4 RTT= 34.13 ms
+
+ ---- 193.0.14.129 ping statistics ----
+4 packets transmitted, 4 received, 0% packet loss
+Average Jitter: 1.58 ms
+
+
+--- sudo ./traceroute_bin 193.0.14.129 -i ---
+
+===== Starting ICMP Traceroute to 193.0.14.129 =====
+ 1  172.20.64.1  0.47 ms (TTL Expired)
+ 2  192.168.1.1  4.61 ms (TTL Expired)
+ 3  10.240.8.32  36.49 ms (TTL Expired)
+TTL =  4 | Request timed out
+ 5  152.52.62.5  8.93 ms (TTL Expired)
+ 6  116.119.36.57  29.87 ms (TTL Expired)
+ 7  122.184.77.146  30.87 ms (TTL Expired)
+ 8  193.0.14.129  33.84 ms Destination Reached
+
+--- Traceroute Statistics ---
+8 packets sent, 7 packets received, 12.5% packet loss
+
+
+--- sudo ./traceroute_bin 193.0.14.129 -u ---
+
+===== Starting UDP Traceroute to 193.0.14.129 =====
+ 1 172.20.64.1 0.54 ms | TTL Expired
+ 2 192.168.1.1 4.45 ms | TTL Expired
+ 3 10.240.8.32 7.50 ms | TTL Expired
+TTL =  4 | Request timed out
+ 5 152.52.62.37 6.26 ms | TTL Expired
+ 6 116.119.36.57 33.58 ms | TTL Expired
+ 7 122.184.77.146 30.29 ms | TTL Expired
+ 8 193.0.14.129 34.70 ms | Destination Reached (Port Unreachable)
+
+--- Traceroute Statistics ---
+8 packets sent, 7 packets received, 12.5% packet loss
+
+
+--- sudo ./bandwidth_bin 193.0.14.129 ---
+Packet-pair bandwidth experiment
+Destination: 193.0.14.129
+ICMP payload: 1000 bytes; 10 pairs
+
+Pair  1: sending sequences 1 and 2...
+  Reply gap: 0.000005353 seconds; rough rate: 1506.445 Mbps
+Pair  2: sending sequences 3 and 4...
+  Reply gap: 0.000005658 seconds; rough rate: 1425.239 Mbps
+Pair  3: sending sequences 5 and 6...
+  Reply gap: 0.000006544 seconds; rough rate: 1232.274 Mbps
+Pair  4: sending sequences 7 and 8...
+  Reply gap: 0.000005778 seconds; rough rate: 1395.639 Mbps
+Pair  5: sending sequences 9 and 10...
+  Reply gap: 0.000006322 seconds; rough rate: 1275.546 Mbps
+Pair  6: sending sequences 11 and 12...
+  Reply gap: 0.000010153 seconds; rough rate: 794.248 Mbps
+Pair  7: sending sequences 13 and 14...
+  Reply gap: 0.000005824 seconds; rough rate: 1384.615 Mbps
+Pair  8: sending sequences 15 and 16...
+  Reply gap: 0.000006193 seconds; rough rate: 1302.115 Mbps
+Pair  9: sending sequences 17 and 18...
+  Reply gap: 0.000006977 seconds; rough rate: 1155.798 Mbps
+Pair 10: sending sequences 19 and 20...
+  Reply gap: 0.000007855 seconds; rough rate: 1026.607 Mbps
+
+========== SUMMARY ==========
+Valid pairs: 10 / 10
+Mean reply-gap rate:   1249.853 Mbps
+Median reply-gap rate: 1288.831 Mbps
+Measurement: approximate ICMP reply-gap estimate.
+It is not a direct measurement of one-way link capacity.
+==============================
+
+
+--- sudo ./bufferbloat_bin 193.0.14.129 ---
+
+================ [1] RUPEN'S ORIGINAL PING (ping.c) ================
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf189
+Packet successfully fires , 8 bytes sent to 193.0.14.129
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 193.0.14.129: bytes= 28 icmp_seq=1 RTT= 34.30 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf188
+Packet successfully fires , 8 bytes sent to 193.0.14.129
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 193.0.14.129: bytes= 28 icmp_seq=2 RTT= 34.34 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf187
+Packet successfully fires , 8 bytes sent to 193.0.14.129
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 193.0.14.129: bytes= 28 icmp_seq=3 RTT= 34.88 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf186
+Packet successfully fires , 8 bytes sent to 193.0.14.129
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 193.0.14.129: bytes= 28 icmp_seq=4 RTT= 34.55 ms
+
+ ---- 193.0.14.129 ping statistics ----
+4 packets transmitted, 4 received, 0% packet loss
+Average Jitter: 0.31 ms
+
+================ [2] RUPEN'S UPDATED PING (updated_ping.c) ================
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf189
+Packet successfully fires , 8 bytes sent to 193.0.14.129
+TTL = 1 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 172.20.64.1: bytes=56 icmp_seq=1 RTT=0.45 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf188
+Packet successfully fires , 8 bytes sent to 193.0.14.129
+TTL = 2 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 192.168.1.1: bytes=56 icmp_seq=2 RTT=4.85 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf187
+Packet successfully fires , 8 bytes sent to 193.0.14.129
+TTL = 3 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 10.240.8.32: bytes=56 icmp_seq=3 RTT=6.92 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf186
+Packet successfully fires , 8 bytes sent to 193.0.14.129
+TTL = 4 | Listening to router response for 2 seconds...
+TTL = 4 | Request timed out / failed to receive.
+ICMP Echo Request packet constructed! Checksum generated: 0xf185
+Packet successfully fires , 8 bytes sent to 193.0.14.129
+TTL = 5 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 152.52.62.5: bytes=56 icmp_seq=5 RTT=6.66 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf184
+Packet successfully fires , 8 bytes sent to 193.0.14.129
+TTL = 6 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 116.119.36.57: bytes=56 icmp_seq=6 RTT=30.33 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf183
+Packet successfully fires , 8 bytes sent to 193.0.14.129
+TTL = 7 | Listening to router response for 2 seconds...
+Reply caught ! Received 96 bytes from the network.
+Reply from 122.184.77.146: bytes=96 icmp_seq=7 RTT=32.30 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf182
+Packet successfully fires , 8 bytes sent to 193.0.14.129
+TTL = 8 | Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+  Destination Reached !!! | Reply from 193.0.14.129: bytes= 28 icmp_seq=8 RTT= 34.26 ms
+
+ ---- 193.0.14.129 ping statistics ----
+8 packets transmitted, 7 received, 12% packet loss
+Average Jitter: 5.72 ms
+
+================ [3] SUBHASIS'S TRACEROUTE (traceroute.c) ================
+
+===== Starting ICMP Traceroute to 193.0.14.129 =====
+ 1  172.20.64.1  0.42 ms (TTL Expired)
+ 2  192.168.1.1  4.98 ms (TTL Expired)
+ 3  10.240.8.32  93.79 ms (TTL Expired)
+TTL =  4 | Request timed out
+ 5  152.52.62.5  5.89 ms (TTL Expired)
+ 6  116.119.36.57  30.33 ms (TTL Expired)
+ 7  122.184.77.146  30.67 ms (TTL Expired)
+ 8  193.0.14.129  34.56 ms Destination Reached
+
+--- Traceroute Statistics ---
+8 packets sent, 7 packets received, 12.5% packet loss
+
+===== Starting UDP Traceroute to 193.0.14.129 =====
+ 1 172.20.64.1 0.36 ms | TTL Expired
+ 2 192.168.1.1 4.60 ms | TTL Expired
+ 3 10.240.8.32 5.83 ms | TTL Expired
+TTL =  4 | Request timed out
+ 5 152.52.62.37 6.27 ms | TTL Expired
+ 6 116.119.61.131 25.82 ms | TTL Expired
+ 7 122.184.77.146 31.76 ms | TTL Expired
+ 8 193.0.14.129 29.76 ms | Destination Reached (Port Unreachable)
+
+--- Traceroute Statistics ---
+8 packets sent, 7 packets received, 12.5% packet loss
+
+================ [4] DIPTALAL'S PATH MTU DISCOVERY (pmtu.c) ================
+PMTU discovery target: 193.0.14.129
+Search range: 576..1500 bytes (whole IPv4 packet, including headers).
+Testing  576-byte IPv4 packet (DF set, sequence 1)...
+  Matching Echo Reply received from 193.0.14.129.
+Confirmed working lower bound: 576 bytes.
+Testing 1500-byte IPv4 packet (DF set, sequence 2)...
+  Matching ICMP Fragmentation Needed received.
+  Router-reported next-hop MTU: 1480 bytes.
+Confirmed too-large upper bound: 1500 bytes.
+Testing 1038-byte IPv4 packet (DF set, sequence 3)...
+  Matching Echo Reply received from 193.0.14.129.
+  1038 bytes succeeded; updating lower bound.
+  Current bounds: working=1038, too-large=1500 bytes.
+Testing 1269-byte IPv4 packet (DF set, sequence 4)...
+  Matching Echo Reply received from 193.0.14.129.
+  1269 bytes succeeded; updating lower bound.
+  Current bounds: working=1269, too-large=1500 bytes.
+Testing 1384-byte IPv4 packet (DF set, sequence 5)...
+  Matching Echo Reply received from 193.0.14.129.
+  1384 bytes succeeded; updating lower bound.
+  Current bounds: working=1384, too-large=1500 bytes.
+Testing 1442-byte IPv4 packet (DF set, sequence 6)...
+  Matching Echo Reply received from 193.0.14.129.
+  1442 bytes succeeded; updating lower bound.
+  Current bounds: working=1442, too-large=1500 bytes.
+Testing 1471-byte IPv4 packet (DF set, sequence 7)...
+  Matching Echo Reply received from 193.0.14.129.
+  1471 bytes succeeded; updating lower bound.
+  Current bounds: working=1471, too-large=1500 bytes.
+Testing 1485-byte IPv4 packet (DF set, sequence 8)...
+  Local network stack reports packet too large.
+  1485 bytes required fragmentation; updating upper bound.
+  Current bounds: working=1471, too-large=1485 bytes.
+Testing 1478-byte IPv4 packet (DF set, sequence 9)...
+  Matching Echo Reply received from 193.0.14.129.
+  1478 bytes succeeded; updating lower bound.
+  Current bounds: working=1478, too-large=1485 bytes.
+Testing 1481-byte IPv4 packet (DF set, sequence 10)...
+  Local network stack reports packet too large.
+  1481 bytes required fragmentation; updating upper bound.
+  Current bounds: working=1478, too-large=1481 bytes.
+Testing 1479-byte IPv4 packet (DF set, sequence 11)...
+  Matching Echo Reply received from 193.0.14.129.
+  1479 bytes succeeded; updating lower bound.
+  Current bounds: working=1479, too-large=1481 bytes.
+Testing 1480-byte IPv4 packet (DF set, sequence 12)...
+  Matching Echo Reply received from 193.0.14.129.
+  1480 bytes succeeded; updating lower bound.
+  Current bounds: working=1480, too-large=1481 bytes.
+
+========== PMTU RESULT ==========
+Largest confirmed working packet: 1480 bytes
+Smallest confirmed too-large packet: 1481 bytes
+Estimated PMTU within the tested range: 1480 bytes
+=================================
+Note: ICMP filtering/rate limiting can affect active probing.
+
+================ [5] DIPTALAL'S BANDWIDTH ESTIMATION (bandwidth.c) ================
+Packet-pair bandwidth experiment
+Destination: 193.0.14.129
+ICMP payload: 1000 bytes; 10 pairs
+
+Pair  1: sending sequences 1 and 2...
+  Reply gap: 0.000005530 seconds; rough rate: 1458.228 Mbps
+Pair  2: sending sequences 3 and 4...
+  Reply gap: 0.000006869 seconds; rough rate: 1173.970 Mbps
+Pair  3: sending sequences 5 and 6...
+  Reply gap: 0.000007608 seconds; rough rate: 1059.937 Mbps
+Pair  4: sending sequences 7 and 8...
+  Reply gap: 0.000004838 seconds; rough rate: 1666.804 Mbps
+Pair  5: sending sequences 9 and 10...
+  Reply gap: 0.000004969 seconds; rough rate: 1622.862 Mbps
+Pair  6: sending sequences 11 and 12...
+  Reply gap: 0.000005718 seconds; rough rate: 1410.283 Mbps
+Pair  7: sending sequences 13 and 14...
+  Reply gap: 0.000005334 seconds; rough rate: 1511.811 Mbps
+Pair  8: sending sequences 15 and 16...
+  Reply gap: 0.000005306 seconds; rough rate: 1519.789 Mbps
+Pair  9: sending sequences 17 and 18...
+  Reply gap: 0.000011501 seconds; rough rate: 701.156 Mbps
+Pair 10: sending sequences 19 and 20...
+  Reply gap: 0.000005493 seconds; rough rate: 1468.050 Mbps
+
+========== SUMMARY ==========
+Valid pairs: 10 / 10
+Mean reply-gap rate:   1359.289 Mbps
+Median reply-gap rate: 1463.139 Mbps
+Measurement: approximate ICMP reply-gap estimate.
+It is not a direct measurement of one-way link capacity.
+==============================
+
+================ [6] AMLAN'S BUFFERBLOAT ENGINE ================
+
+--- [IDLE_PHASE] Measuring RTT via Rupen's Ping Engine to 193.0.14.129 ---
+Reply from 193.0.14.129: icmp_seq=1 RTT=34.11 ms
+Timeout waiting for icmp_seq=2 (elapsed 2222 ms)
+Reply from 193.0.14.129: icmp_seq=3 RTT=34.67 ms
+Reply from 193.0.14.129: icmp_seq=4 RTT=34.96 ms
+
+--- [LOADED_PHASE] Measuring RTT via Rupen's Ping Engine to 193.0.14.129 ---
+Reply from 193.0.14.129: icmp_seq=101 RTT=33.24 ms
+Reply from 193.0.14.129: icmp_seq=102 RTT=33.26 ms
+Reply from 193.0.14.129: icmp_seq=103 RTT=33.48 ms
+Reply from 193.0.14.129: icmp_seq=104 RTT=34.00 ms
+
+Bufferbloat Summary for 193.0.14.129 -> Idle RTT: 34.58 ms | Loaded RTT: 33.49 ms | Queuing Delay: 0.00 ms
+
+RESULT_CSV:193.0.14.129,34.58,33.49
+
+
+================ DESTINATION: 200.160.0.8 ================
+
+--- sudo ./ping_bin 200.160.0.8 ---
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf184
+Packet successfully fires , 8 bytes sent to 200.160.0.8
+Listening to router response for 2 seconds...
+Request timed out / failed to receive.
+ICMP Echo Request packet constructed! Checksum generated: 0xf183
+Packet successfully fires , 8 bytes sent to 200.160.0.8
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 200.160.0.8: bytes= 28 icmp_seq=2 RTT= 260.88 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf182
+Packet successfully fires , 8 bytes sent to 200.160.0.8
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 200.160.0.8: bytes= 28 icmp_seq=3 RTT= 263.10 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf181
+Packet successfully fires , 8 bytes sent to 200.160.0.8
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 200.160.0.8: bytes= 28 icmp_seq=4 RTT= 261.79 ms
+
+ ---- 200.160.0.8 ping statistics ----
+4 packets transmitted, 3 received, 25% packet loss
+Average Jitter: 1.76 ms
+
+
+--- sudo ./traceroute_bin 200.160.0.8 -i ---
+
+===== Starting ICMP Traceroute to 200.160.0.8 =====
+ 1  172.20.64.1  0.47 ms (TTL Expired)
+ 2  192.168.1.1  4.69 ms (TTL Expired)
+ 3  10.240.8.32  6.56 ms (TTL Expired)
+TTL =  4 | Request timed out
+ 5  152.52.62.5  7.36 ms (TTL Expired)
+ 6  116.119.49.38  116.52 ms (TTL Expired)
+ 7  187.16.217.2  265.39 ms (TTL Expired)
+ 8  200.160.0.174  276.93 ms (TTL Expired)
+ 9  200.160.0.246  256.36 ms (TTL Expired)
+10  200.160.0.8  271.02 ms Destination Reached
+
+--- Traceroute Statistics ---
+10 packets sent, 9 packets received, 10.0% packet loss
+
+
+--- sudo ./traceroute_bin 200.160.0.8 -u ---
+
+===== Starting UDP Traceroute to 200.160.0.8 =====
+ 1 172.20.64.1 0.39 ms | TTL Expired
+ 2 192.168.1.1 4.12 ms | TTL Expired
+ 3 10.240.8.32 18.02 ms | TTL Expired
+TTL =  4 | Request timed out
+ 5 152.52.62.5 5.01 ms | TTL Expired
+ 6 116.119.121.12 122.17 ms | TTL Expired
+ 7 187.16.217.2 264.08 ms | TTL Expired
+ 8 200.160.0.174 273.10 ms | TTL Expired
+ 9 200.160.0.246 252.18 ms | TTL Expired
+10 200.160.0.8 262.43 ms | Destination Reached (Port Unreachable)
+
+--- Traceroute Statistics ---
+10 packets sent, 9 packets received, 10.0% packet loss
+
+
+--- sudo ./bandwidth_bin 200.160.0.8 ---
+Packet-pair bandwidth experiment
+Destination: 200.160.0.8
+ICMP payload: 1000 bytes; 10 pairs
+
+Pair  1: sending sequences 1 and 2...
+  Reply gap: 0.000006525 seconds; rough rate: 1235.862 Mbps
+Pair  2: sending sequences 3 and 4...
+  Reply gap: 0.000008044 seconds; rough rate: 1002.486 Mbps
+Pair  3: sending sequences 5 and 6...
+  Reply gap: 0.000005332 seconds; rough rate: 1512.378 Mbps
+Pair  4: sending sequences 7 and 8...
+  Reply gap: 0.000005527 seconds; rough rate: 1459.019 Mbps
+Pair  5: sending sequences 9 and 10...
+  Reply gap: 0.000007060 seconds; rough rate: 1142.210 Mbps
+Pair  6: sending sequences 11 and 12...
+  Reply gap: 0.000010721 seconds; rough rate: 752.169 Mbps
+Pair  7: sending sequences 13 and 14...
+  Reply gap: 0.000006976 seconds; rough rate: 1155.963 Mbps
+Pair  8: sending sequences 15 and 16...
+  Reply gap: 0.000009963 seconds; rough rate: 809.395 Mbps
+Pair  9: sending sequences 17 and 18...
+  Reply gap: 0.000005244 seconds; rough rate: 1537.757 Mbps
+Pair 10: sending sequences 19 and 20...
+  Reply gap: 0.003319643 seconds; rough rate: 2.429 Mbps
+
+========== SUMMARY ==========
+Valid pairs: 10 / 10
+Mean reply-gap rate:   1060.967 Mbps
+Median reply-gap rate: 1149.086 Mbps
+Measurement: approximate ICMP reply-gap estimate.
+It is not a direct measurement of one-way link capacity.
+==============================
+
+
+--- sudo ./bufferbloat_bin 200.160.0.8 ---
+
+================ [1] RUPEN'S ORIGINAL PING (ping.c) ================
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf178
+Packet successfully fires , 8 bytes sent to 200.160.0.8
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 200.160.0.8: bytes= 28 icmp_seq=1 RTT= 264.90 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf177
+Packet successfully fires , 8 bytes sent to 200.160.0.8
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 200.160.0.8: bytes= 28 icmp_seq=2 RTT= 264.25 ms
+ICMP Echo Request packet constructed! Checksum generated: 0xf176
+Packet successfully fires , 8 bytes sent to 200.160.0.8
+Listening to router response for 2 seconds...
+Request timed out / failed to receive.
+ICMP Echo Request packet constructed! Checksum generated: 0xf175
+Packet successfully fires , 8 bytes sent to 200.160.0.8
+Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+ Reply from 200.160.0.8: bytes= 28 icmp_seq=4 RTT= 265.11 ms
+
+ ---- 200.160.0.8 ping statistics ----
+4 packets transmitted, 3 received, 25% packet loss
+Average Jitter: 0.75 ms
+
+================ [2] RUPEN'S UPDATED PING (updated_ping.c) ================
+Network core initialized.Memory structure defined.
+Raw socket successfully opened. File descriptor: 3
+ICMP Echo Request packet constructed! Checksum generated: 0xf178
+Packet successfully fires , 8 bytes sent to 200.160.0.8
+TTL = 1 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 172.20.64.1: bytes=56 icmp_seq=1 RTT=0.54 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf177
+Packet successfully fires , 8 bytes sent to 200.160.0.8
+TTL = 2 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 192.168.1.1: bytes=56 icmp_seq=2 RTT=5.21 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf176
+Packet successfully fires , 8 bytes sent to 200.160.0.8
+TTL = 3 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 10.240.8.32: bytes=56 icmp_seq=3 RTT=16.12 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf175
+Packet successfully fires , 8 bytes sent to 200.160.0.8
+TTL = 4 | Listening to router response for 2 seconds...
+TTL = 4 | Request timed out / failed to receive.
+ICMP Echo Request packet constructed! Checksum generated: 0xf174
+Packet successfully fires , 8 bytes sent to 200.160.0.8
+TTL = 5 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 152.52.62.5: bytes=56 icmp_seq=5 RTT=6.66 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf173
+Packet successfully fires , 8 bytes sent to 200.160.0.8
+TTL = 6 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 116.119.49.38: bytes=56 icmp_seq=6 RTT=117.47 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf172
+Packet successfully fires , 8 bytes sent to 200.160.0.8
+TTL = 7 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 187.16.217.2: bytes=56 icmp_seq=7 RTT=265.20 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf171
+Packet successfully fires , 8 bytes sent to 200.160.0.8
+TTL = 8 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 200.160.0.174: bytes=56 icmp_seq=8 RTT=278.55 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf170
+Packet successfully fires , 8 bytes sent to 200.160.0.8
+TTL = 9 | Listening to router response for 2 seconds...
+Reply caught ! Received 56 bytes from the network.
+Reply from 200.160.0.246: bytes=56 icmp_seq=9 RTT=256.25 ms (TTL Expired)
+ICMP Echo Request packet constructed! Checksum generated: 0xf16f
+Packet successfully fires , 8 bytes sent to 200.160.0.8
+TTL = 10 | Listening to router response for 2 seconds...
+Reply caught ! Received 28 bytes from the network.
+Identity verified! , the router replied to exact same process.
+  Destination Reached !!! | Reply from 200.160.0.8: bytes= 28 icmp_seq=10 RTT= 264.66 ms
+
+ ---- 200.160.0.8 ping statistics ----
+10 packets transmitted, 9 received, 10% packet loss
+Average Jitter: 40.95 ms
+
+================ [3] SUBHASIS'S TRACEROUTE (traceroute.c) ================
+
+===== Starting ICMP Traceroute to 200.160.0.8 =====
+ 1  172.20.64.1  0.44 ms (TTL Expired)
+ 2  192.168.1.1  4.43 ms (TTL Expired)
+ 3  10.240.8.32  19.26 ms (TTL Expired)
+TTL =  4 | Request timed out
+ 5  152.52.62.5  8.18 ms (TTL Expired)
+ 6  116.119.49.38  115.47 ms (TTL Expired)
+ 7  187.16.217.2  263.03 ms (TTL Expired)
+ 8  200.160.0.174  274.67 ms (TTL Expired)
+ 9  200.160.0.246  253.80 ms (TTL Expired)
+10  200.160.0.8  269.61 ms Destination Reached
+
+--- Traceroute Statistics ---
+10 packets sent, 9 packets received, 10.0% packet loss
+
+===== Starting UDP Traceroute to 200.160.0.8 =====
+ 1 172.20.64.1 0.38 ms | TTL Expired
+ 2 192.168.1.1 4.99 ms | TTL Expired
+ 3 10.240.8.32 8.43 ms | TTL Expired
+TTL =  4 | Request timed out
+ 5 152.52.62.37 11.26 ms | TTL Expired
+ 6 116.119.164.78 130.17 ms | TTL Expired
+ 7 187.16.217.2 253.79 ms | TTL Expired
+ 8 200.160.0.174 280.47 ms | TTL Expired
+ 9 200.160.0.246 268.04 ms | TTL Expired
+10 200.160.0.8 261.75 ms | Destination Reached (Port Unreachable)
+
+--- Traceroute Statistics ---
+10 packets sent, 9 packets received, 10.0% packet loss
+
+================ [4] DIPTALAL'S PATH MTU DISCOVERY (pmtu.c) ================
+PMTU discovery target: 200.160.0.8
+Search range: 576..1500 bytes (whole IPv4 packet, including headers).
+Testing  576-byte IPv4 packet (DF set, sequence 1)...
+  Matching Echo Reply received from 200.160.0.8.
+Confirmed working lower bound: 576 bytes.
+Testing 1500-byte IPv4 packet (DF set, sequence 2)...
+  Matching ICMP Fragmentation Needed received.
+  Router-reported next-hop MTU: 1480 bytes.
+Confirmed too-large upper bound: 1500 bytes.
+Testing 1038-byte IPv4 packet (DF set, sequence 3)...
+  Matching Echo Reply received from 200.160.0.8.
+  1038 bytes succeeded; updating lower bound.
+  Current bounds: working=1038, too-large=1500 bytes.
+Testing 1269-byte IPv4 packet (DF set, sequence 4)...
+  Matching Echo Reply received from 200.160.0.8.
+  1269 bytes succeeded; updating lower bound.
+  Current bounds: working=1269, too-large=1500 bytes.
+Testing 1384-byte IPv4 packet (DF set, sequence 5)...
+  Matching Echo Reply received from 200.160.0.8.
+  1384 bytes succeeded; updating lower bound.
+  Current bounds: working=1384, too-large=1500 bytes.
+Testing 1442-byte IPv4 packet (DF set, sequence 6)...
+  Matching Echo Reply received from 200.160.0.8.
+  1442 bytes succeeded; updating lower bound.
+  Current bounds: working=1442, too-large=1500 bytes.
+Testing 1471-byte IPv4 packet (DF set, sequence 7)...
+  Matching Echo Reply received from 200.160.0.8.
+  1471 bytes succeeded; updating lower bound.
+  Current bounds: working=1471, too-large=1500 bytes.
+Testing 1485-byte IPv4 packet (DF set, sequence 8)...
+  Local network stack reports packet too large.
+  1485 bytes required fragmentation; updating upper bound.
+  Current bounds: working=1471, too-large=1485 bytes.
+Testing 1478-byte IPv4 packet (DF set, sequence 9)...
+  Matching Echo Reply received from 200.160.0.8.
+  1478 bytes succeeded; updating lower bound.
+  Current bounds: working=1478, too-large=1485 bytes.
+Testing 1481-byte IPv4 packet (DF set, sequence 10)...
+  Local network stack reports packet too large.
+  1481 bytes required fragmentation; updating upper bound.
+  Current bounds: working=1478, too-large=1481 bytes.
+Testing 1479-byte IPv4 packet (DF set, sequence 11)...
+  Matching Echo Reply received from 200.160.0.8.
+  1479 bytes succeeded; updating lower bound.
+  Current bounds: working=1479, too-large=1481 bytes.
+Testing 1480-byte IPv4 packet (DF set, sequence 12)...
+  Matching Echo Reply received from 200.160.0.8.
+  1480 bytes succeeded; updating lower bound.
+  Current bounds: working=1480, too-large=1481 bytes.
+
+========== PMTU RESULT ==========
+Largest confirmed working packet: 1480 bytes
+Smallest confirmed too-large packet: 1481 bytes
+Estimated PMTU within the tested range: 1480 bytes
+=================================
+Note: ICMP filtering/rate limiting can affect active probing.
+
+================ [5] DIPTALAL'S BANDWIDTH ESTIMATION (bandwidth.c) ================
+Packet-pair bandwidth experiment
+Destination: 200.160.0.8
+ICMP payload: 1000 bytes; 10 pairs
+
+Pair  1: sending sequences 1 and 2...
+  Reply gap: 0.000006847 seconds; rough rate: 1177.742 Mbps
+Pair  2: sending sequences 3 and 4...
+  Reply gap: 0.000007071 seconds; rough rate: 1140.433 Mbps
+Pair  3: sending sequences 5 and 6...
+  Reply gap: 0.000006083 seconds; rough rate: 1325.662 Mbps
+Pair  4: sending sequences 7 and 8...
+  Reply gap: 0.000009748 seconds; rough rate: 827.247 Mbps
+Pair  5: sending sequences 9 and 10...
+  Reply gap: 0.004315690 seconds; rough rate: 1.869 Mbps
+Pair  6: sending sequences 11 and 12...
+  Reply gap: 0.000008518 seconds; rough rate: 946.701 Mbps
+Pair  7: sending sequences 13 and 14...
+  Reply gap: 0.000005522 seconds; rough rate: 1460.340 Mbps
+Pair  8: sending sequences 15 and 16...
+  Reply gap: 0.000007901 seconds; rough rate: 1020.630 Mbps
+Pair  9: sending sequences 17 and 18...
+  Reply gap: 0.003726271 seconds; rough rate: 2.164 Mbps
+Pair 10: sending sequences 19 and 20...
+  Reply gap: 0.000007090 seconds; rough rate: 1137.377 Mbps
+
+========== SUMMARY ==========
+Valid pairs: 10 / 10
+Mean reply-gap rate:   904.016 Mbps
+Median reply-gap rate: 1079.003 Mbps
+Measurement: approximate ICMP reply-gap estimate.
+It is not a direct measurement of one-way link capacity.
+==============================
+
+================ [6] AMLAN'S BUFFERBLOAT ENGINE ================
+
+--- [IDLE_PHASE] Measuring RTT via Rupen's Ping Engine to 200.160.0.8 ---
+Reply from 200.160.0.8: icmp_seq=1 RTT=263.83 ms
+Reply from 200.160.0.8: icmp_seq=2 RTT=266.15 ms
+Reply from 200.160.0.8: icmp_seq=3 RTT=266.15 ms
+Reply from 200.160.0.8: icmp_seq=4 RTT=264.49 ms
+
+--- [LOADED_PHASE] Measuring RTT via Rupen's Ping Engine to 200.160.0.8 ---
+Reply from 200.160.0.8: icmp_seq=101 RTT=263.93 ms
+Reply from 200.160.0.8: icmp_seq=102 RTT=265.35 ms
+Reply from 200.160.0.8: icmp_seq=103 RTT=264.00 ms
+Reply from 200.160.0.8: icmp_seq=104 RTT=264.99 ms
+
+Bufferbloat Summary for 200.160.0.8 -> Idle RTT: 265.16 ms | Loaded RTT: 264.57 ms | Queuing Delay: 0.00 ms
+
+RESULT_CSV:200.160.0.8,265.16,264.57
+
